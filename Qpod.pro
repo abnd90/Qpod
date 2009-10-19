@@ -20,3 +20,6 @@ PKGCONFIG += libgpod-1.0 \
     glib-2.0 \
     taglib
 RESOURCES += images.qrc
+QMAKE_CXXFLAGS -= -m64
+QMAKE_CFLAGS -= -m64
+QMAKE_LFLAGS -= -m64
