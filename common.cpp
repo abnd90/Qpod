@@ -2,6 +2,7 @@
 
 
 
+
 QString ConvertVid(QString filepath)                    //TODO VERY dirty conversion process, needs to be redone
 {
     QString filename(FnamefrmPath(filepath));
@@ -49,6 +50,9 @@ return filename;
 
 void SetTags(Itdb_Track* track,const QString fp)
 {
+    QFile tfile(fp);
+    track->size=tfile.size();
+
     TagLib::String title;
     if( track->mediatype != ITDB_MEDIATYPE_MOVIE && track->mediatype != ITDB_MEDIATYPE_MUSICVIDEO && track->mediatype != ITDB_MEDIATYPE_TVSHOW )
     {
@@ -72,6 +76,10 @@ void SetTags(Itdb_Track* track,const QString fp)
                   track->year = f.tag()->year();
                   track->genre= g_strdup(f.tag()->genre().toCString());
                   track->tracklen=f.audioProperties()->length()*1000;
+                  track->filetype =g_strdup( "mp3" );
+                  track->bitrate =f.audioProperties()->bitrate();
+                  track->samplerate =f.audioProperties()->sampleRate();
+                  //album art
 
               }
         }

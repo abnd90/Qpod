@@ -133,6 +133,7 @@ void MainWindow::initwin()
 void MainWindow::Add_Video(const QString& fp)
 {
     ipod.Add_Video(fp);
+    system(QString("rm "+fp).toLatin1()); //remove the tmp video
     reload();
     this->statusBar()->showMessage("Video added successfully",5000);
 }

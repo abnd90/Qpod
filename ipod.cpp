@@ -1,5 +1,5 @@
 #include "ipod.h"
-//#include <iostream>
+
 
 
 Ipod::Ipod()
@@ -91,7 +91,7 @@ void Ipod::AddTrack(const QString& fp)
     SetTags(track,fp);
 
     track->itdb=database;
-    track->filetype =g_strdup( "audio file" );
+
     //write to DB and copy to ipod
     itdb_cp_track_to_ipod(track,g_strdup(fp.toLatin1()),NULL);
     itdb_track_add(database,track,-1);
@@ -106,10 +106,7 @@ void Ipod::AddTrack(const QString& fp)
 
 void Ipod::AddTrack(Itdb_Track* track,const QString& fp)
 {
-    track->mediatype=ITDB_MEDIATYPE_AUDIO;
-    SetTags(track,fp);
-    track->itdb=database;
-    track->filetype =g_strdup( "audio file" );
+
     //write to DB and copy to ipod
     itdb_cp_track_to_ipod(track,g_strdup(fp.toLatin1()),NULL);
     itdb_track_add(database,track,-1);
@@ -137,7 +134,31 @@ void Ipod::AddFolder(const QString& fp)
    {
       QString abspath=fp+"/"+*i;
       track[j]=itdb_track_new();
-      AddTrack(track[j],abspath);
+      track[j]->mediatype=ITDB_MEDIATYPE_AUDIO;
+      SetTags(track[j],abspath);
+      track[j]->itdb=database;
+      track[j]->mediatype=ITDB_MEDIATYPE_AUDIO;
+      //track->compilation = 0x01;
+      //AddTrack(track,abspath);
+   }
+
+   for(j=1;j<list.count();j++)
+   {
+
+       if(QString(track[0]->artist)==QString(track[j]->artist))
+           continue;
+
+       else
+       {
+           for(int k=0;k<list.count();k++)
+               track[k]->compilation=0x01;
+           break;
+       }
+   }
+   for(j=0,i = list.begin();j<list.count();j++,++i)
+   {
+       QString abspath=fp+"/"+*i;
+       AddTrack(track[j],abspath);
    }
 
 

@@ -2,11 +2,13 @@
 #define COMMON_H
 
 #include <QString>
+#include <QFile>
 #include <cstdlib>
 #include <gpod/itdb.h>
 #include <audioproperties.h>
 #include <tag.h>
 #include <fileref.h>
+#include <mpegfile.h>
 
 
 QString ConvertVid(QString filepath);
