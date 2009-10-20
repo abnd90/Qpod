@@ -12,14 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle(tr("Qpod"));
     setWindowIcon(QIcon(":/images/ipod_icon.png"));
-    connect(ui->actionAbout_Qt,SIGNAL(triggered()), qApp,SLOT(aboutQt()));
-    connect(ui->actionReload,SIGNAL(triggered()), this,SLOT(reload()));
-    connect(ui->actionAbout,SIGNAL(triggered()), this,SLOT(about()));
-    connect(ui->actionConvert_and_Add,SIGNAL(triggered()), this,SLOT(action_video_select()));
-    connect(ui->actionSet_Mount_Point,SIGNAL(triggered()),this,SLOT(SetMP()));
-    connect(ui->actionAdd_File,SIGNAL(triggered()),this,SLOT(AddTrack()));
+
     connect(&ipod,SIGNAL(AddedTrack()), this,SLOT(reload()));
-    connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(AddFolder()));
+
+    createActions();
+    createContextMenu();
 
     reload();
 
@@ -94,6 +91,13 @@ void MainWindow::initwin()
            while(tmptracklst!=NULL)
            {
                  tmp=(Itdb_Track*)tmptracklst->data;
+
+                 if(QString(tmp->title).isEmpty())       //stale entries
+                 {
+                     tmptracklst=tmptracklst->next;
+                     continue;
+                 }
+
                  QTableWidgetItem *title = new QTableWidgetItem(tmp->title);
                  QTableWidgetItem *artist = new QTableWidgetItem(tmp->artist);
                  QTableWidgetItem *album = new QTableWidgetItem(tmp->album);
@@ -133,7 +137,7 @@ void MainWindow::initwin()
 void MainWindow::Add_Video(const QString& fp)
 {
     ipod.Add_Video(fp);
-    system(QString("rm "+fp).toLatin1()); //remove the tmp video
+    DeleteFile(fp); //remove the tmp video
     reload();
     this->statusBar()->showMessage("Video added successfully",5000);
 }
@@ -193,4 +197,47 @@ void MainWindow::AddFolder()
     open->show();
     connect(open, SIGNAL(fileSelected(const QString&) ),&ipod, SLOT(AddFolder(const QString&)));
 
+}
+
+void MainWindow::createContextMenu()
+{
+    ui->tableWidget->addAction(actionProperties);
+    ui->tableWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+}
+
+
+void MainWindow::createActions()
+{
+    connect(ui->actionAbout_Qt,SIGNAL(triggered()), qApp,SLOT(aboutQt()));
+    connect(ui->actionReload,SIGNAL(triggered()), this,SLOT(reload()));
+    connect(ui->actionAbout,SIGNAL(triggered()), this,SLOT(about()));
+    connect(ui->actionConvert_and_Add,SIGNAL(triggered()), this,SLOT(action_video_select()));
+    connect(ui->actionSet_Mount_Point,SIGNAL(triggered()),this,SLOT(SetMP()));
+    connect(ui->actionAdd_File,SIGNAL(triggered()),this,SLOT(AddTrack()));
+    connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(AddFolder()));
+
+    actionProperties=new QAction("Properties",this);
+    connect(actionProperties,SIGNAL(triggered()),this,SLOT(showProperties()));
+}
+
+void MainWindow::showProperties()
+{
+    Itdb_Track * thetrack=GetTrack(ui->tableWidget->currentRow(),ui->tableWidget->currentColumn());
+
+    if(itdb_track_has_thumbnails(thetrack))
+    {
+        GdkPixbuf* cover=(GdkPixbuf*)itdb_track_get_thumbnail(thetrack,128,128);
+        gdk_pixbuf_save (cover, "tmpcover", "jpeg", NULL,
+                 "quality", "100", NULL);
+
+        trackproperties.AlbumArt->setPixmap(QPixmap("tmpcover"));
+    }
+    else
+        trackproperties.AlbumArt->setPixmap(QPixmap(":/images/no-cover-art.jpg"));
+
+    trackproperties.AlbumBox->setPlainText(QString(thetrack->album));
+    trackproperties.ArtistBox->setPlainText(QString(thetrack->artist));
+    trackproperties.TitleBox->setPlainText(QString(thetrack->title));
+
+    trackproperties.show();
 }

@@ -92,3 +92,9 @@ void SetTags(Itdb_Track* track,const QString fp)
     }
 
 }
+
+bool DeleteFile(const QString & name)
+{
+    QFile del(name);
+    return del.remove();
+}

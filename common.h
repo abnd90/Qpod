@@ -14,5 +14,5 @@
 QString ConvertVid(QString filepath);
 QString FnamefrmPath(QString filepath);
 void SetTags(Itdb_Track* track,QString fp);
-void PlayFile();
+bool DeleteFile(const QString & name);
 #endif // COMMON_H

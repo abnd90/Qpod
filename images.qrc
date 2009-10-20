@@ -7,5 +7,6 @@
         <file>images/player_play.png</file>
         <file>images/player_stop.png</file>
         <file>images/folder.png</file>
+        <file>images/no-cover-art.jpg</file>
     </qresource>
 </RCC>

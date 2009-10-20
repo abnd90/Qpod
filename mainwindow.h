@@ -8,10 +8,7 @@
 #include <QString>
 #include "ipod.h"
 #include "videodialog.h"
-#include "ui_mountpoint.h"
-
-
-
+#include "propertiesdialog.h"
 
 enum TypeOfView{LIST,ALBUM,ARTIST,PLAYLIST};
 
@@ -37,10 +34,17 @@ private slots:
     void AddTrack();
     void AddFolder();
     void SetMP();
+    void showProperties();
 private:
     Ui::MainWindow *ui;
     Itdb_Track* GetTrack(int row,int col);
+
+    void createContextMenu();
+    void createActions();
+
     TypeOfView view;
+    QAction *actionProperties;
+    PropertiesDialog trackproperties;
 
 
 };

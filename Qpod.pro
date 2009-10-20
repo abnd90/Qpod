@@ -7,14 +7,17 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     ipod.cpp \
     videodialog.cpp \
-    common.cpp
+    common.cpp \
+    propertiesdialog.cpp
 HEADERS += mainwindow.h \
     ipod.h \
     ipod.h \
     videodialog.h \
-    common.h
+    common.h \
+    propertiesdialog.h
 FORMS += mainwindow.ui \
-    addvideodialog.ui
+    addvideodialog.ui \
+    propertiesdialog.ui
 CONFIG += link_pkgconfig
 PKGCONFIG += libgpod-1.0 \
     glib-2.0 \
