@@ -1,0 +1,6 @@
+#DEPS
+ffmpeg - for convert and add video
+taglib - tagging support
+libgpod - ofcourse!
+glib 
+Qt	
