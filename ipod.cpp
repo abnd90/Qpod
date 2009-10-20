@@ -1,5 +1,5 @@
 #include "ipod.h"
-
+//#include <iostream>
 
 
 Ipod::Ipod()
@@ -47,8 +47,8 @@ int Ipod::usedspaceperc(void)
 {
   struct statvfs fs;
   statvfs(mountpoint.toLatin1(),&fs);
-  int totalsize=(fs.f_blocks*fs.f_frsize)/1024;
-  int freesize=(fs.f_bfree*fs.f_frsize)/1024;
+  int totalsize=ipodinfo->capacity*1000*1000;
+  int freesize=(fs.f_bavail*fs.f_frsize)/1024;
   int usedsize=totalsize-freesize;
   return ((float)usedsize/totalsize)*100;
 }

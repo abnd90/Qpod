@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+//#include <iostream>
 
 
 Ipod ipod;
@@ -159,11 +159,24 @@ void MainWindow::Add_Video(const QString& fp)
 
 Itdb_Track* MainWindow::GetTrack(int row,int col)
 {
+    QTableWidgetItem* titleitem=ui->tableWidget->item(row,0);
+    //QTableWidgetItem* artistitem=ui->tableWidget->item(row,1);
+    //QTableWidgetItem* albumitem=ui->tableWidget->item(row,2);
     GList *tmptracklst=ipod.tracks;
-    for(int i=0;i<row;i++)
-        tmptracklst=tmptracklst->next;
 
-    return (Itdb_Track *)tmptracklst->data;
+    if(titleitem==NULL)
+        return NULL;
+
+    while(titleitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->title))
+           tmptracklst=tmptracklst->next;
+
+
+
+    if(tmptracklst!=NULL)
+        return (Itdb_Track *)tmptracklst->data;
+    else
+        return NULL;
+
 }
 
 void MainWindow::SetMP(void)
@@ -224,6 +237,8 @@ void MainWindow::showProperties()
 {
     Itdb_Track * thetrack=GetTrack(ui->tableWidget->currentRow(),ui->tableWidget->currentColumn());
 
+    if(thetrack==NULL)
+        return;
     if(itdb_track_has_thumbnails(thetrack))
     {
         GdkPixbuf* cover=(GdkPixbuf*)itdb_track_get_thumbnail(thetrack,128,128);
