@@ -1,5 +1,5 @@
 #DEPS
-ffmpeg - for convert and add video
+ffmpeg - to convert and add videos
 taglib - tagging support
 libgpod - ofcourse!
 glib 
