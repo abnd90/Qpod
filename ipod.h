@@ -21,9 +21,10 @@ class Ipod:public QObject
 private:
     Itdb_iTunesDB *database;
     const Itdb_IpodInfo *ipodinfo;
-
+    bool DBchanged;
     QString mountpoint;
     GList *tracks;
+    void DBwrite();
  public:
     Ipod();
     void builddb(void);
@@ -32,6 +33,7 @@ private:
     int usedspaceperc(void);
     void Add_Video(const QString& fp);
     bool SupportsVideo(void);
+    bool removeTrack(Itdb_Track*);
  public slots:
     void SetMountPoint(const QString&);
     void AddTrack(const QString&);

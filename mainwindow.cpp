@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include <iostream>
-
 
 Ipod ipod;
 
@@ -14,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/images/ipod_icon.png"));
 
     connect(&ipod,SIGNAL(AddedTrack()), this,SLOT(reload()));
-
+    ipod.DBchanged=false;        //initialising
     createActions();
     createContextMenu();
 
@@ -24,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    if(ipod.DBchanged)
+        ipod.DBwrite();
+
     delete ui;
 }
 
@@ -49,10 +50,10 @@ void MainWindow::action_video_select()   //SLOT
 void MainWindow::about()   //SLOT about Qpod
 {
     QMessageBox::about(this,"About Qpod",
-                       "<h2>Qpod -1</h2>"
-                       "<p>A Qt4 application which aims"
-                       " to manage your iPod collection"
-                       " but does nothing at the moment :)");
+                       "<h2>Qpod 0.1</h2>"
+                       "<p>A Qt4 application which"
+                       " manages your iPod collection."
+                       "<p>Still an early alpha, so it may eat your iPod");
 }
 
 void MainWindow::initwin()
@@ -86,7 +87,8 @@ void MainWindow::initwin()
            Itdb_Track *tmp;
            GList *tmptracklst=ipod.tracks;
            int row=0,column=0;
-           ui->tableWidget->setRowCount(g_list_length(tmptracklst));
+           int rowcount=0;
+           //ui->tableWidget->setRowCount(g_list_length(tmptracklst));
 
            while(tmptracklst!=NULL)
            {
@@ -97,7 +99,8 @@ void MainWindow::initwin()
                      tmptracklst=tmptracklst->next;
                      continue;
                  }
-
+                 ++rowcount;
+                 ui->tableWidget->setRowCount(rowcount);
                  QTableWidgetItem *title = new QTableWidgetItem(tmp->title);
                  QTableWidgetItem *artist = new QTableWidgetItem(tmp->artist);
                  QTableWidgetItem *album = new QTableWidgetItem(tmp->album);
@@ -142,34 +145,37 @@ void MainWindow::Add_Video(const QString& fp)
     this->statusBar()->showMessage("Video added successfully",5000);
 }
 
-/*void MainWindow::RefreshDetails(int row,int col)
-{
-    Itdb_Track *curr;
-    curr=GetTrack(row,col);
-    //ui->trackdetails->setText(curr->title);
-    if(itdb_track_has_thumbnails(curr))
-    {
-        GdkPixbuf* cover=(GdkPixbuf*)itdb_track_get_thumbnail(curr,128,128);
-        gdk_pixbuf_save (cover, "tmpcover", "jpeg", NULL,
-                 "quality", "100", NULL);
-
-       // ui->coverart->setPixmap(QPixmap("tmpcover"));
-    }
-}*/
 
 Itdb_Track* MainWindow::GetTrack(int row,int col)
 {
     QTableWidgetItem* titleitem=ui->tableWidget->item(row,0);
-    //QTableWidgetItem* artistitem=ui->tableWidget->item(row,1);
-    //QTableWidgetItem* albumitem=ui->tableWidget->item(row,2);
+    QTableWidgetItem* artistitem=ui->tableWidget->item(row,1);
+    QTableWidgetItem* albumitem=ui->tableWidget->item(row,2);
     GList *tmptracklst=ipod.tracks;
 
     if(titleitem==NULL)
         return NULL;
 
-    while(titleitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->title))
-           tmptracklst=tmptracklst->next;
-
+    while(1)
+    {
+        if(titleitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->title))
+        {
+             tmptracklst=tmptracklst->next;
+             continue;
+         }
+        //track titles are equal, make sure album and artist are also equal
+        if(artistitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->artist))
+         {
+             tmptracklst=tmptracklst->next;
+             continue;
+         }
+        if(albumitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->album))
+         {
+             tmptracklst=tmptracklst->next;
+             continue;
+         }
+        break;
+    }
 
 
     if(tmptracklst!=NULL)
@@ -215,6 +221,7 @@ void MainWindow::AddFolder()
 void MainWindow::createContextMenu()
 {
     ui->tableWidget->addAction(actionProperties);
+    ui->tableWidget->addAction(actionDelete);
     ui->tableWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
@@ -229,8 +236,10 @@ void MainWindow::createActions()
     connect(ui->actionAdd_File,SIGNAL(triggered()),this,SLOT(AddTrack()));
     connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(AddFolder()));
 
-    actionProperties=new QAction("Properties",this);
+    actionProperties=new QAction("Properties",ui->tableWidget);
     connect(actionProperties,SIGNAL(triggered()),this,SLOT(showProperties()));
+    actionDelete=new QAction("Delete",ui->tableWidget);
+    connect(actionDelete,SIGNAL(triggered()),this,SLOT(DeleteTrack()));
 }
 
 void MainWindow::showProperties()
@@ -256,3 +265,18 @@ void MainWindow::showProperties()
 
     trackproperties.show();
 }
+
+void MainWindow::DeleteTrack()
+{
+    int row=ui->tableWidget->currentRow();
+    int column=ui->tableWidget->currentColumn();
+    Itdb_Track * thetrack=GetTrack(row,column);
+
+    if(thetrack==NULL)
+        return;
+
+    if(ipod.removeTrack(thetrack))
+        ui->tableWidget->removeRow(row);
+}
+
+

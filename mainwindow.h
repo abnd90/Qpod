@@ -35,6 +35,7 @@ private slots:
     void AddFolder();
     void SetMP();
     void showProperties();
+    void DeleteTrack();
 private:
     Ui::MainWindow *ui;
     Itdb_Track* GetTrack(int row,int col);
@@ -44,6 +45,7 @@ private:
 
     TypeOfView view;
     QAction *actionProperties;
+    QAction *actionDelete;
     PropertiesDialog trackproperties;
 
 

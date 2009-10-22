@@ -1,5 +1,4 @@
 #include "ipod.h"
-//#include <iostream>
 
 
 Ipod::Ipod()
@@ -12,9 +11,12 @@ void Ipod::builddb(void)
   bool dbvalid=mpexists();
   if(dbvalid)
     {
-        if(database)
-            itdb_free(database);
-        database=itdb_parse(mountpoint.toLatin1(),NULL);
+        if(!DBchanged)                 //database not changed by Qpod,reinitialize DB
+      {
+            if(database)
+                itdb_free(database);
+            database=itdb_parse(mountpoint.toLatin1(),NULL);
+      }
         ipodinfo=itdb_device_get_ipod_info(database->device);
         tracks=NULL;
         tracks=(GList *)database->tracks;
@@ -69,8 +71,8 @@ void Ipod::Add_Video(const QString& fp)
     //add to master playlist
     Itdb_Playlist *mpl = itdb_playlist_mpl(database);
     itdb_playlist_add_track(mpl, video, -1);
-    //write the DB
-    itdb_write(database,NULL);
+    //changed the DB
+    DBchanged=true;
 
 }
 
@@ -99,8 +101,8 @@ void Ipod::AddTrack(const QString& fp)
     //add to master playlist
     Itdb_Playlist *mpl = itdb_playlist_mpl(database);
     itdb_playlist_add_track(mpl, track, -1);
-    //write the DB
-    itdb_write(database,NULL);
+    //changed the DB
+    DBchanged=true;
     emit AddedTrack();
 }
 
@@ -114,8 +116,8 @@ void Ipod::AddTrack(Itdb_Track* track,const QString& fp)
     //add to master playlist
     Itdb_Playlist *mpl = itdb_playlist_mpl(database);
     itdb_playlist_add_track(mpl, track, -1);
-    //write the DB
-    itdb_write(database,NULL);
+    //changed the DB
+    DBchanged=true;
 }
 
 void Ipod::AddFolder(const QString& fp)
@@ -151,7 +153,9 @@ void Ipod::AddFolder(const QString& fp)
        else
        {
            for(int k=0;k<list.count();k++)
+           {
                track[k]->compilation=0x01;
+           }
            break;
        }
    }
@@ -165,4 +169,39 @@ void Ipod::AddFolder(const QString& fp)
    emit AddedTrack();
 }
 
+bool Ipod::removeTrack(Itdb_Track* thetrack)
+{
+    QString relPath(thetrack->ipod_path);
+    relPath.replace(':','/');
+    QString filePath=mountpoint+relPath;
+    QFile file(filePath);
 
+    if(file.remove())
+    {
+        Itdb_Playlist *mpl = itdb_playlist_mpl(database);
+
+        if(itdb_playlist_contains_track(mpl,thetrack))
+              itdb_playlist_remove_track(mpl,thetrack);
+
+        GList* playlists=database->playlists;
+        while(playlists!=NULL)
+        {
+            if(itdb_playlist_contains_track((Itdb_Playlist*)playlists->data,thetrack))
+                  itdb_playlist_remove_track((Itdb_Playlist*)playlists->data,thetrack);
+
+            playlists=playlists->next;
+
+        }
+
+        itdb_track_remove(thetrack);
+        DBchanged=true;
+        return true;
+    }
+
+    return false;
+}
+
+void Ipod::DBwrite()
+{
+    itdb_write(database,NULL);
+}

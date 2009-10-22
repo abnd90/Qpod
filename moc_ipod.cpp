@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'ipod.h'
 **
-** Created: Tue Oct 20 15:54:33 2009
+** Created: Thu Oct 22 21:22:07 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!

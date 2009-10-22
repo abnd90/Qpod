@@ -62,67 +62,64 @@
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-tOEfIv7McT,guid=f10dce24c3ef217ecb5a69da4add8c7f</value>
-    <value type="QString" >DESKTOP_SESSION=xfce</value>
+    <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ZYzZDqiEDn,guid=591a694deb14f60f877aee844ae07c54</value>
+    <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
-    <value type="QString" >GDMSESSION=xfce</value>
-    <value type="QString" >GDM_XSERVER_LOCATION=local</value>
-    <value type="QString" >GLADE_CATALOG_PATH=:</value>
-    <value type="QString" >GLADE_MODULE_PATH=:</value>
-    <value type="QString" >GLADE_PIXMAP_PATH=:</value>
-    <value type="QString" >GNOME_KEYRING_PID=2085</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-66eJMe/socket</value>
-    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
-    <value type="QString" >GTK_PATH=:/usr/lib/gtk-2.0</value>
+    <value type="QString" >DM_CONTROL=/var/run/xdmctl</value>
+    <value type="QString" >GS_LIB=/home/kdemod/.fonts</value>
+    <value type="QString" >GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/kdemod/.gtkrc-2.0::/home/kdemod/.kdemod4/share/config/gtkrc-2.0</value>
+    <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/kdemod/.gtkrc::/home/kdemod/.kdemod4/share/config/gtkrc</value>
     <value type="QString" >G_BROKEN_FILENAMES=1</value>
     <value type="QString" >HISTCONTROL=erasedups</value>
     <value type="QString" >HISTSIZE=1000</value>
-    <value type="QString" >HOME=/home/abhi</value>
+    <value type="QString" >HOME=/home/kdemod</value>
     <value type="QString" >INPUTRC=/etc/inputrc</value>
-    <value type="QString" >INTEL_BATCH=1</value>
-    <value type="QString" >KDEDIRS=/usr:/opt/kde</value>
+    <value type="QString" >JAVA_HOME=/opt/java/jre</value>
+    <value type="QString" >KDE_FULL_SESSION=true</value>
+    <value type="QString" >KDE_MULTIHEAD=false</value>
+    <value type="QString" >KDE_SESSION_UID=1001</value>
+    <value type="QString" >KDE_SESSION_VERSION=4</value>
     <value type="QString" >LANG=en_US.utf8</value>
     <value type="QString" >LC_COLLATE=C</value>
     <value type="QString" >LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString" >LESS=-R</value>
-    <value type="QString" >LIBGLADE_MODULE_PATH=:/usr/lib/libglade/2.0</value>
     <value type="QString" >LOGNAME=abhi</value>
     <value type="QString" >MOZ_PLUGIN_PATH=/usr/lib/mozilla/plugins</value>
     <value type="QString" >OOO_FORCE_DESKTOP=gnome</value>
-    <value type="QString" >PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
-    <value type="QString" >PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/kde/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
+    <value type="QString" >PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/java/jre/bin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
+    <value type="QString" >PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
     <value type="QString" >PS3=> </value>
     <value type="QString" >PS4=+ </value>
-    <value type="QString" >PWD=/home/abhi</value>
+    <value type="QString" >PWD=/home/kdemod</value>
     <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/eeepc:@/tmp/.ICE-unix/2172,unix/eeepc:/tmp/.ICE-unix/2172</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1480,unix/myhost:/tmp/.ICE-unix/1480</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
-    <value type="QString" >SSH_AGENT_PID=2163</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/ssh-DmKDRY2098/agent.2098</value>
     <value type="QString" >USER=abhi</value>
-    <value type="QString" >USERNAME=abhi</value>
     <value type="QString" >WINDOWPATH=7</value>
-    <value type="QString" >XAUTHORITY=/home/abhi/.Xauthority</value>
-    <value type="QString" >XDG_CACHE_HOME=/home/abhi/.cache</value>
-    <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg:/opt/kde/etc/xdg</value>
-    <value type="QString" >XDG_CONFIG_HOME=/home/abhi/.config</value>
-    <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/usr/share:/usr/local/share:/opt/kde/share:/usr/share/gdm/:/opt/kde/share:/usr/share</value>
-    <value type="QString" >XDG_DATA_HOME=/home/abhi/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=251b2b3877554c97437d2bee4a469d15-1256033406.107632-744037180</value>
+    <value type="QString" >XCURSOR_THEME=Oxygen_Black</value>
+    <value type="QString" >XDG_CACHE_HOME=/home/kdemod/.cache</value>
+    <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg</value>
+    <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
+    <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1256225873.753861-1166250501</value>
+    <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
-    <value type="QString" >/home/abhi/Qpod/Qpod.pro</value>
+    <value type="QString" >/home/kdemod/development/Qpod/Qpod/Qpod.pro</value>
     <value type="QString" >-spec</value>
-    <value type="QString" >/usr/share/qt/mkspecs/linux-g++</value>
+    <value type="QString" >/usr/share/qt/mkspecs/linux-g++-64</value>
     <value type="QString" >-r</value>
     <value type="QString" >CONFIG+=debug</value>
    </valuelist>
    <value key="abstractProcess.command" type="QString" >/usr/bin/qmake</value>
-   <value key="abstractProcess.enabled" type="bool" >false</value>
-   <value key="abstractProcess.workingDirectory" type="QString" >/home/abhi/Qpod</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/kdemod/development/Qpod/Qpod</value>
    <value key="buildConfiguration" type="int" >2</value>
   </valuemap>
  </data>
@@ -131,63 +128,60 @@
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-tOEfIv7McT,guid=f10dce24c3ef217ecb5a69da4add8c7f</value>
-    <value type="QString" >DESKTOP_SESSION=xfce</value>
+    <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-ZYzZDqiEDn,guid=591a694deb14f60f877aee844ae07c54</value>
+    <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
-    <value type="QString" >GDMSESSION=xfce</value>
-    <value type="QString" >GDM_XSERVER_LOCATION=local</value>
-    <value type="QString" >GLADE_CATALOG_PATH=:</value>
-    <value type="QString" >GLADE_MODULE_PATH=:</value>
-    <value type="QString" >GLADE_PIXMAP_PATH=:</value>
-    <value type="QString" >GNOME_KEYRING_PID=2085</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-66eJMe/socket</value>
-    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
-    <value type="QString" >GTK_PATH=:/usr/lib/gtk-2.0</value>
+    <value type="QString" >DM_CONTROL=/var/run/xdmctl</value>
+    <value type="QString" >GS_LIB=/home/kdemod/.fonts</value>
+    <value type="QString" >GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/kdemod/.gtkrc-2.0::/home/kdemod/.kdemod4/share/config/gtkrc-2.0</value>
+    <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/kdemod/.gtkrc::/home/kdemod/.kdemod4/share/config/gtkrc</value>
     <value type="QString" >G_BROKEN_FILENAMES=1</value>
     <value type="QString" >HISTCONTROL=erasedups</value>
     <value type="QString" >HISTSIZE=1000</value>
-    <value type="QString" >HOME=/home/abhi</value>
+    <value type="QString" >HOME=/home/kdemod</value>
     <value type="QString" >INPUTRC=/etc/inputrc</value>
-    <value type="QString" >INTEL_BATCH=1</value>
-    <value type="QString" >KDEDIRS=/usr:/opt/kde</value>
+    <value type="QString" >JAVA_HOME=/opt/java/jre</value>
+    <value type="QString" >KDE_FULL_SESSION=true</value>
+    <value type="QString" >KDE_MULTIHEAD=false</value>
+    <value type="QString" >KDE_SESSION_UID=1001</value>
+    <value type="QString" >KDE_SESSION_VERSION=4</value>
     <value type="QString" >LANG=en_US.utf8</value>
     <value type="QString" >LC_COLLATE=C</value>
     <value type="QString" >LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString" >LESS=-R</value>
-    <value type="QString" >LIBGLADE_MODULE_PATH=:/usr/lib/libglade/2.0</value>
     <value type="QString" >LOGNAME=abhi</value>
     <value type="QString" >MOZ_PLUGIN_PATH=/usr/lib/mozilla/plugins</value>
     <value type="QString" >OOO_FORCE_DESKTOP=gnome</value>
-    <value type="QString" >PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
-    <value type="QString" >PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/kde/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
+    <value type="QString" >PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/java/jre/bin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
+    <value type="QString" >PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
     <value type="QString" >PS3=> </value>
     <value type="QString" >PS4=+ </value>
-    <value type="QString" >PWD=/home/abhi</value>
+    <value type="QString" >PWD=/home/kdemod</value>
     <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/eeepc:@/tmp/.ICE-unix/2172,unix/eeepc:/tmp/.ICE-unix/2172</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1480,unix/myhost:/tmp/.ICE-unix/1480</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
-    <value type="QString" >SSH_AGENT_PID=2163</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/ssh-DmKDRY2098/agent.2098</value>
     <value type="QString" >USER=abhi</value>
-    <value type="QString" >USERNAME=abhi</value>
     <value type="QString" >WINDOWPATH=7</value>
-    <value type="QString" >XAUTHORITY=/home/abhi/.Xauthority</value>
-    <value type="QString" >XDG_CACHE_HOME=/home/abhi/.cache</value>
-    <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg:/opt/kde/etc/xdg</value>
-    <value type="QString" >XDG_CONFIG_HOME=/home/abhi/.config</value>
-    <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/usr/share:/usr/local/share:/opt/kde/share:/usr/share/gdm/:/opt/kde/share:/usr/share</value>
-    <value type="QString" >XDG_DATA_HOME=/home/abhi/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=251b2b3877554c97437d2bee4a469d15-1256033406.107632-744037180</value>
+    <value type="QString" >XCURSOR_THEME=Oxygen_Black</value>
+    <value type="QString" >XDG_CACHE_HOME=/home/kdemod/.cache</value>
+    <value type="QString" >XDG_CONFIG_DIRS=/etc/xdg</value>
+    <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
+    <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1256225873.753861-1166250501</value>
+    <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
     <value type="QString" >-w</value>
    </valuelist>
    <value key="abstractProcess.command" type="QString" >/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool" >true</value>
-   <value key="abstractProcess.workingDirectory" type="QString" >/home/abhi/Qpod</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/kdemod/development/Qpod/Qpod</value>
   </valuemap>
  </data>
  <data>
@@ -196,7 +190,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
     <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-qbBN6pOSu3,guid=d9761c1b7c8d6acc8a7a21684ad88880</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-QMBXfiBoCy,guid=c28a9dd4ba774e78d01075df4adfff2e</value>
     <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -230,7 +224,7 @@
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1499,unix/myhost:/tmp/.ICE-unix/1499</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1509,unix/myhost:/tmp/.ICE-unix/1509</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >USER=abhi</value>
@@ -241,7 +235,7 @@
     <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
     <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1255704701.486110-1369017679</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1256193836.277477-2021593242</value>
     <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >

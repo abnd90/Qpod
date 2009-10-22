@@ -69,16 +69,17 @@ void SetTags(Itdb_Track* track,const QString fp)
                     f.save();
                 }
 
-                  track->title= g_strdup(title.toCString());
-                  track->album= g_strdup(f.tag()->album().toCString());
-                  track->artist= g_strdup(f.tag()->artist().toCString());
-                  track->comment = g_strdup(f.tag()->comment().toCString());
+                  track->title= g_strdup(title.to8Bit(true).c_str());
+                  track->album= g_strdup(f.tag()->album().to8Bit(true).c_str());
+                  track->artist= g_strdup(f.tag()->artist().to8Bit(true).c_str());
+                  track->comment = g_strdup(f.tag()->comment().to8Bit(true).c_str());
                   track->year = f.tag()->year();
-                  track->genre= g_strdup(f.tag()->genre().toCString());
+                  track->genre= g_strdup(f.tag()->genre().to8Bit(true).c_str());
                   track->tracklen=f.audioProperties()->length()*1000;
                   track->filetype =g_strdup( "mp3" );
                   track->bitrate =f.audioProperties()->bitrate();
                   track->samplerate =f.audioProperties()->sampleRate();
+                  track->filetype_marker=0;
                   //album art
 
               }
@@ -88,7 +89,7 @@ void SetTags(Itdb_Track* track,const QString fp)
         track->movie_flag = 0x01;
         track->remember_playback_position=0x01;
         title=FnamefrmPath(fp).toStdString();
-        track->title= g_strdup(title.toCString());
+        track->title= g_strdup(title.to8Bit(true).c_str());
     }
 
 }
