@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'propertiesdialog.ui'
 **
-** Created: Thu Oct 22 13:18:32 2009
+** Created: Fri Oct 23 10:01:29 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

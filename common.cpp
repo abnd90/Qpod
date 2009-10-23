@@ -1,7 +1,5 @@
 #include "common.h"
-
-
-
+//#include <iostream>
 
 QString ConvertVid(QString filepath)                    //TODO VERY dirty conversion process, needs to be redone
 {
@@ -86,12 +84,40 @@ void SetTags(Itdb_Track* track,const QString fp)
         }
     else               //Movie file
     {
+        MP4FileHandle file = MP4Modify(fp.toLatin1() , MP4_DETAILS_ERROR, 0 );       //libmp4v2
+        title=FnamefrmPath(fp).toStdString();
+        if( file != MP4_INVALID_FILE_HANDLE )
+        {
+            //const MP4Tags* tags = MP4TagsAlloc();
+            //MP4TagsFetch( tags, file );
+            //if( tags->name )                 //set title if the tag has it
+            //    title=tags->name;
+            u_int32_t numTracks = MP4GetNumberOfTracks(file);       //copied from amarok
+            for (u_int32_t i = 0; i < numTracks; i++)
+            {
+                  MP4TrackId trackId = MP4FindTrackId(file, i);
+
+                  const char* trackType =MP4GetTrackType(file, trackId);
+
+                 if (!strcmp(trackType, MP4_AUDIO_TRACK_TYPE))
+                 {
+                     MP4Duration trackDuration =
+                                      MP4GetTrackDuration(file, trackId);
+                     double msDuration =MP4ConvertFromTrackDuration(file, trackId,
+                                            trackDuration, MP4_MSECS_TIME_SCALE);
+
+                     track->tracklen=(int)(msDuration);
+                  }
+               }
+
+             //MP4TagsFree( tags );
+             MP4Close( file );
+        }
         track->movie_flag = 0x01;
         track->remember_playback_position=0x01;
-        title=FnamefrmPath(fp).toStdString();
         track->title= g_strdup(title.to8Bit(true).c_str());
     }
-
+    tfile.close();
 }
 
 bool DeleteFile(const QString & name)

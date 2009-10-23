@@ -8,7 +8,7 @@
 #include <audioproperties.h>
 #include <tag.h>
 #include <fileref.h>
-#include <mpegfile.h>
+#include <mp4v2/mp4v2.h>
 
 
 QString ConvertVid(QString filepath);

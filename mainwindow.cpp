@@ -277,6 +277,7 @@ void MainWindow::DeleteTrack()
 
     if(ipod.removeTrack(thetrack))
         ui->tableWidget->removeRow(row);
+    this->statusBar()->showMessage("Track deleted",5000);
 }
 
 

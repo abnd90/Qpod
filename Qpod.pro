@@ -26,3 +26,5 @@ RESOURCES += images.qrc
 QMAKE_CXXFLAGS -= -m64
 QMAKE_CFLAGS -= -m64
 QMAKE_LFLAGS -= -m64
+QMAKE_LIBS += -lmp4v2
+
