@@ -3,4 +3,5 @@ ffmpeg - to convert and add videos
 taglib - tagging support
 libgpod - ofcourse!
 glib 
-Qt	
+Qt
+libmp4v2 - video file tagging support - http://code.google.com/p/mp4v2/	
