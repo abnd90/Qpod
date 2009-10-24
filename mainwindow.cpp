@@ -6,7 +6,7 @@ Ipod ipod;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    view=LIST;
+    //view=LIST;               //multiple views unimplemented
     ui->setupUi(this);
     setWindowTitle(tr("Qpod"));
     setWindowIcon(QIcon(":/images/ipod_icon.png"));
@@ -67,7 +67,7 @@ void MainWindow::initwin()
 
     ui->menu_Music->setEnabled(1);
     /*populate the table with tracks*/
-    if(view==LIST)
+    if(/*view==LIST*/1)                   //multiple views unimplemented
     {
         //ui->stackedWidget->setCurrentIndex(0);
         ui->tableWidget->clearContents();

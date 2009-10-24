@@ -1,5 +1,4 @@
 #include "common.h"
-//#include <iostream>
 
 QString ConvertVid(QString filepath)                    //TODO VERY dirty conversion process, needs to be redone
 {

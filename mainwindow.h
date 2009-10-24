@@ -10,7 +10,6 @@
 #include "videodialog.h"
 #include "propertiesdialog.h"
 
-enum TypeOfView{LIST,ALBUM,ARTIST,PLAYLIST};
 
 namespace Ui
 {
@@ -41,7 +40,6 @@ private:
     void createContextMenu();
     void createActions();
 
-    TypeOfView view;
     QAction *actionProperties;
     QAction *actionDelete;
     PropertiesDialog trackproperties;
