@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'propertiesdialog.h'
 **
-** Created: Sat Oct 24 10:22:35 2009
+** Created: Sat Oct 24 13:44:36 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!

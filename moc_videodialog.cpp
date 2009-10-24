@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'videodialog.h'
 **
-** Created: Sat Oct 24 10:22:33 2009
+** Created: Sat Oct 24 15:17:34 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -32,7 +32,7 @@ static const uint qt_meta_data_VideoDialog[] = {
       15,   13,   12,   12, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      55,   49,   12,   12, 0x08,
+      55,   49,   12,   12, 0x0a,
       82,   12,   12,   12, 0x08,
       97,   12,   12,   12, 0x08,
 

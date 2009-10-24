@@ -16,8 +16,9 @@ public:
 private:
     QString filepath;
     void setfname(void);
-private slots:
+public slots:
     void open_video_dialog(const QString& fpath);
+private slots:
     void ConvertVideo(void);
     void alwaysChecked();
 signals:

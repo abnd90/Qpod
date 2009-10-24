@@ -224,6 +224,7 @@ void MainWindow::createActions()
     connect(ui->actionSet_Mount_Point,SIGNAL(triggered()),this,SLOT(SetMP()));
     connect(ui->actionAdd_File,SIGNAL(triggered()),this,SLOT(AddTrack()));
     connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(AddFolder()));
+    connect(ui->actionAdd_YouTube_Video,SIGNAL(triggered()),this,SLOT(addYoutube()));
 
     actionProperties=new QAction("Properties",ui->tableWidget);
     connect(actionProperties,SIGNAL(triggered()),this,SLOT(showProperties()));
@@ -248,9 +249,9 @@ void MainWindow::showProperties()
     else
         trackproperties.AlbumArt->setPixmap(QPixmap(":/images/no-cover-art.jpg"));
 
-    trackproperties.AlbumBox->setPlainText(QString(thetrack->album));
-    trackproperties.ArtistBox->setPlainText(QString(thetrack->artist));
-    trackproperties.TitleBox->setPlainText(QString(thetrack->title));
+    trackproperties.AlbumBox->setText(QString(thetrack->album));
+    trackproperties.ArtistBox->setText(QString(thetrack->artist));
+    trackproperties.TitleBox->setText(QString(thetrack->title));
 
     trackproperties.show();
 }
@@ -268,5 +269,13 @@ void MainWindow::DeleteTrack()
         ui->tableWidget->removeRow(row);
     this->statusBar()->showMessage("Track deleted",5000);
 }
+
+void MainWindow::addYoutube()
+{
+    YoutubeDialog *D=new YoutubeDialog;
+    D->show();
+}
+
+
 
 

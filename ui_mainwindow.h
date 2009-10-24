@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat Oct 24 10:22:17 2009
+** Created: Sat Oct 24 13:05:12 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -45,6 +45,7 @@ public:
     QAction *actionAlbum_View;
     QAction *actionArtist_View;
     QAction *actionList_View;
+    QAction *actionAdd_YouTube_Video;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QGridLayout *gridLayout;
@@ -103,6 +104,8 @@ public:
         actionArtist_View->setObjectName(QString::fromUtf8("actionArtist_View"));
         actionList_View = new QAction(MainWindow);
         actionList_View->setObjectName(QString::fromUtf8("actionList_View"));
+        actionAdd_YouTube_Video = new QAction(MainWindow);
+        actionAdd_YouTube_Video->setObjectName(QString::fromUtf8("actionAdd_YouTube_Video"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
@@ -252,6 +255,7 @@ public:
         menu_About->addAction(actionAbout);
         menu_Edit->addAction(actionSet_Mount_Point);
         menuMovies->addAction(actionConvert_and_Add);
+        menuMovies->addAction(actionAdd_YouTube_Video);
         menu_Music->addAction(actionAdd_File);
         menu_Music->addAction(actionAdd_Folder);
         menu_View->addAction(actionAlbum_View);
@@ -287,6 +291,7 @@ public:
         actionAlbum_View->setText(QApplication::translate("MainWindow", "Album View", 0, QApplication::UnicodeUTF8));
         actionArtist_View->setText(QApplication::translate("MainWindow", "Artist View", 0, QApplication::UnicodeUTF8));
         actionList_View->setText(QApplication::translate("MainWindow", "List View", 0, QApplication::UnicodeUTF8));
+        actionAdd_YouTube_Video->setText(QApplication::translate("MainWindow", "Add YouTube Video", 0, QApplication::UnicodeUTF8));
         ipodimg->setText(QApplication::translate("MainWindow", "ipod icon goes here", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "No iPod Mounted", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);

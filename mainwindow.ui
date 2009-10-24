@@ -296,6 +296,7 @@
      <string>&amp;Videos</string>
     </property>
     <addaction name="actionConvert_and_Add"/>
+    <addaction name="actionAdd_YouTube_Video"/>
    </widget>
    <widget class="QMenu" name="menu_Music">
     <property name="title">
@@ -404,6 +405,11 @@
   <action name="actionList_View">
    <property name="text">
     <string>List View</string>
+   </property>
+  </action>
+  <action name="actionAdd_YouTube_Video">
+   <property name="text">
+    <string>Add YouTube Video</string>
    </property>
   </action>
  </widget>

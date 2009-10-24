@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sat Oct 24 10:30:21 2009
+** Created: Sat Oct 24 16:08:59 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   12, // methods
+       9,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,6 +37,7 @@ static const uint qt_meta_data_MainWindow[] = {
       74,   11,   11,   11, 0x08,
       82,   11,   11,   11, 0x08,
       99,   11,   11,   11, 0x08,
+     113,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -45,7 +46,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0reload()\0about()\0"
     "action_video_select()\0AddTrack()\0"
     "AddFolder()\0SetMP()\0showProperties()\0"
-    "DeleteTrack()\0"
+    "DeleteTrack()\0addYoutube()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -81,9 +82,10 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 5: SetMP(); break;
         case 6: showProperties(); break;
         case 7: DeleteTrack(); break;
+        case 8: addYoutube(); break;
         default: ;
         }
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

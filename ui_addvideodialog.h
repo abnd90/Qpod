@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'addvideodialog.ui'
 **
-** Created: Sat Oct 24 10:22:17 2009
+** Created: Sat Oct 24 13:41:31 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -20,10 +20,10 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
-#include <QtGui/QTextEdit>
 #include <QtGui/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -35,8 +35,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_4;
     QLabel *inputlabel;
-    QTextEdit *inputfile;
-    QSpacerItem *horizontalSpacer_5;
+    QLineEdit *inputfile;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
     QLabel *typelabel;
@@ -81,27 +80,11 @@ public:
 
         horizontalLayout_2->addWidget(inputlabel);
 
-        inputfile = new QTextEdit(AddVideoDialog);
+        inputfile = new QLineEdit(AddVideoDialog);
         inputfile->setObjectName(QString::fromUtf8("inputfile"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(inputfile->sizePolicy().hasHeightForWidth());
-        inputfile->setSizePolicy(sizePolicy2);
-        inputfile->setMinimumSize(QSize(0, 0));
-        inputfile->setMaximumSize(QSize(16777215, 30));
-        inputfile->setBaseSize(QSize(0, 0));
-        inputfile->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        inputfile->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        inputfile->setLineWrapMode(QTextEdit::NoWrap);
         inputfile->setReadOnly(true);
-        inputfile->setTextInteractionFlags(Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         horizontalLayout_2->addWidget(inputfile);
-
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_5);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
@@ -114,21 +97,21 @@ public:
 
         typelabel = new QLabel(AddVideoDialog);
         typelabel->setObjectName(QString::fromUtf8("typelabel"));
-        QSizePolicy sizePolicy3(QSizePolicy::Fixed, QSizePolicy::Preferred);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(typelabel->sizePolicy().hasHeightForWidth());
-        typelabel->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(typelabel->sizePolicy().hasHeightForWidth());
+        typelabel->setSizePolicy(sizePolicy2);
 
         horizontalLayout_3->addWidget(typelabel);
 
         videotype = new QComboBox(AddVideoDialog);
         videotype->setObjectName(QString::fromUtf8("videotype"));
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(videotype->sizePolicy().hasHeightForWidth());
-        videotype->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(videotype->sizePolicy().hasHeightForWidth());
+        videotype->setSizePolicy(sizePolicy3);
         videotype->setSizeAdjustPolicy(QComboBox::AdjustToContents);
         videotype->setMinimumContentsLength(10);
 
@@ -190,10 +173,8 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
 #ifndef QT_NO_SHORTCUT
-        inputlabel->setBuddy(inputfile);
         typelabel->setBuddy(videotype);
 #endif // QT_NO_SHORTCUT
-        QWidget::setTabOrder(inputfile, videotype);
 
         retranslateUi(AddVideoDialog);
         QObject::connect(cancelbutton, SIGNAL(clicked()), AddVideoDialog, SLOT(close()));

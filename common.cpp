@@ -24,6 +24,10 @@ QString ConvertVid(QString filepath)                    //TODO VERY dirty conver
         ret.append(filename);
         ret.append(".mp4");
 
+        if(filepath.contains("/tmp/"))          //delete if tmp file
+               DeleteFile(filepath);            //youtube video's get downloaded into /tmp/
+
+
         return ret;
    }
 

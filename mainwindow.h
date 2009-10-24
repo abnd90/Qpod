@@ -9,6 +9,7 @@
 #include "ipod.h"
 #include "videodialog.h"
 #include "propertiesdialog.h"
+#include "youtube.h"
 
 
 namespace Ui
@@ -34,11 +35,14 @@ private slots:
     void SetMP();
     void showProperties();
     void DeleteTrack();
+    void addYoutube();
+
 private:
     Ui::MainWindow *ui;
     Itdb_Track* GetTrack(int row,int col);
     void createContextMenu();
     void createActions();
+    QString tmp;
 
     QAction *actionProperties;
     QAction *actionDelete;
