@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'ipod.h'
 **
-** Created: Fri Oct 23 10:01:42 2009
+** Created: Sat Oct 24 10:22:31 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Ipod[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   12, // methods
+       6,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,17 +32,20 @@ static const uint qt_meta_data_Ipod[] = {
        6,    5,    5,    5, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      19,    5,    5,    5, 0x0a,
-      42,    5,    5,    5, 0x0a,
-      62,   60,    5,    5, 0x0a,
-      92,    5,    5,    5, 0x0a,
+      21,   19,    5,    5, 0x0a,
+      55,    5,    5,    5, 0x0a,
+      78,    5,    5,    5, 0x0a,
+      96,   19,    5,    5, 0x0a,
+     126,    5,    5,    5, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Ipod[] = {
-    "Ipod\0\0AddedTrack()\0SetMountPoint(QString)\0"
-    "AddTrack(QString)\0,\0AddTrack(Itdb_Track*,QString)\0"
+    "Ipod\0\0AddedTrack()\0,\0"
+    "Add_Video(QString,Itdb_Mediatype)\0"
+    "SetMountPoint(QString)\0AddTrack(QString)\0"
+    "AddTrack(Itdb_Track*,QString)\0"
     "AddFolder(QString)\0"
 };
 
@@ -72,13 +75,14 @@ int Ipod::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: AddedTrack(); break;
-        case 1: SetMountPoint((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 2: AddTrack((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 3: AddTrack((*reinterpret_cast< Itdb_Track*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 4: AddFolder((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 1: Add_Video((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< Itdb_Mediatype(*)>(_a[2]))); break;
+        case 2: SetMountPoint((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 3: AddTrack((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 4: AddTrack((*reinterpret_cast< Itdb_Track*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 5: AddFolder((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

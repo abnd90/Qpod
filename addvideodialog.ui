@@ -199,6 +199,32 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QCheckBox" name="convertCbox">
+       <property name="toolTip">
+        <string>Convert into .mp4 and add</string>
+       </property>
+       <property name="text">
+        <string>Convert Video</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
    </item>
    <item>
@@ -261,7 +287,7 @@
      <item>
       <widget class="QPushButton" name="convertbutton">
        <property name="text">
-        <string>Convert and Add</string>
+        <string>Add</string>
        </property>
       </widget>
      </item>

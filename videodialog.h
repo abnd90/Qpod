@@ -19,7 +19,8 @@ private:
 private slots:
     void open_video_dialog(const QString& fpath);
     void ConvertVideo(void);
+    void alwaysChecked();
 signals:
-    void Conv_Done(const QString&);
+    void Conv_Done(const QString&,Itdb_Mediatype);
 };
 #endif // VIDEODIALOG_H

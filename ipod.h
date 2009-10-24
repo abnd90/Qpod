@@ -31,10 +31,10 @@ private:
     bool mpexists(void);
     ~Ipod();
     int usedspaceperc(void);
-    void Add_Video(const QString& fp);
     bool SupportsVideo(void);
     bool removeTrack(Itdb_Track*);
  public slots:
+    void Add_Video(const QString&,Itdb_Mediatype);
     void SetMountPoint(const QString&);
     void AddTrack(const QString&);
     void AddTrack(Itdb_Track*,const QString&);

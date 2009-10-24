@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Fri Oct 23 10:01:29 2009
+** Created: Sat Oct 24 10:22:17 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -251,7 +251,6 @@ public:
         menu_About->addAction(actionAbout_Qt);
         menu_About->addAction(actionAbout);
         menu_Edit->addAction(actionSet_Mount_Point);
-        menuMovies->addAction(actionAdd);
         menuMovies->addAction(actionConvert_and_Add);
         menu_Music->addAction(actionAdd_File);
         menu_Music->addAction(actionAdd_Folder);
@@ -279,7 +278,7 @@ public:
 #ifndef QT_NO_STATUSTIP
         actionAdd->setStatusTip(QApplication::translate("MainWindow", "Add a video", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_STATUSTIP
-        actionConvert_and_Add->setText(QApplication::translate("MainWindow", "Convert and Add", 0, QApplication::UnicodeUTF8));
+        actionConvert_and_Add->setText(QApplication::translate("MainWindow", "Add Video", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_STATUSTIP
         actionConvert_and_Add->setStatusTip(QApplication::translate("MainWindow", "Convert and add a video", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_STATUSTIP

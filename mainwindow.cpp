@@ -34,19 +34,6 @@ void MainWindow::reload()   //SLOT
     initwin();
 }
 
-
-void MainWindow::action_video_select()   //SLOT
-{
-    QFileDialog *open=new QFileDialog(this,Qt::Dialog);
-    open->setWindowTitle("Select a video file");
-    open->setNameFilter("*.flv *.avi *.wmv *.m4v");
-    open->show();
-    VideoDialog *V=new VideoDialog;
-    connect(open, SIGNAL(fileSelected(const QString&) ),V, SLOT(open_video_dialog(const QString&)));
-    connect(V, SIGNAL(Conv_Done(const QString&)),this, SLOT(Add_Video(const QString&)));
-}
-
-
 void MainWindow::about()   //SLOT about Qpod
 {
     QMessageBox::about(this,"About Qpod",
@@ -137,14 +124,16 @@ void MainWindow::initwin()
     }*/
 }
 
-void MainWindow::Add_Video(const QString& fp)
+void MainWindow::action_video_select()   //SLOT
 {
-    ipod.Add_Video(fp);
-    DeleteFile(fp); //remove the tmp video
-    reload();
-    this->statusBar()->showMessage("Video added successfully",5000);
+    QFileDialog *open=new QFileDialog(this,Qt::Dialog);
+    open->setWindowTitle("Select a video file");
+    open->setNameFilter("*.flv *.avi *.wmv *.m4v *.mp4");
+    open->show();
+    VideoDialog *V=new VideoDialog;
+    connect(open, SIGNAL(fileSelected(const QString&) ),V, SLOT(open_video_dialog(const QString&)));
+    connect(V, SIGNAL(Conv_Done(const QString&,Itdb_Mediatype)),&ipod, SLOT(Add_Video(const QString&,Itdb_Mediatype)));
 }
-
 
 Itdb_Track* MainWindow::GetTrack(int row,int col)
 {

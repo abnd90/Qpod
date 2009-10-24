@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'addvideodialog.ui'
 **
-** Created: Fri Oct 23 10:01:29 2009
+** Created: Sat Oct 24 10:22:17 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
 #include <QtGui/QDialog>
 #include <QtGui/QHBoxLayout>
@@ -41,6 +42,8 @@ public:
     QLabel *typelabel;
     QComboBox *videotype;
     QSpacerItem *horizontalSpacer_2;
+    QCheckBox *convertCbox;
+    QSpacerItem *horizontalSpacer_7;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QLabel *conversion_label;
@@ -135,6 +138,16 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
+        convertCbox = new QCheckBox(AddVideoDialog);
+        convertCbox->setObjectName(QString::fromUtf8("convertCbox"));
+        convertCbox->setChecked(false);
+
+        horizontalLayout_3->addWidget(convertCbox);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_7);
+
 
         verticalLayout->addLayout(horizontalLayout_3);
 
@@ -199,8 +212,12 @@ public:
          << QApplication::translate("AddVideoDialog", "TV Show", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("AddVideoDialog", "Music Video", 0, QApplication::UnicodeUTF8)
         );
+#ifndef QT_NO_TOOLTIP
+        convertCbox->setToolTip(QApplication::translate("AddVideoDialog", "Convert into .mp4 and add", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+        convertCbox->setText(QApplication::translate("AddVideoDialog", "Convert Video", 0, QApplication::UnicodeUTF8));
         conversion_label->setText(QApplication::translate("AddVideoDialog", "Conversion in progress   ", 0, QApplication::UnicodeUTF8));
-        convertbutton->setText(QApplication::translate("AddVideoDialog", "Convert and Add", 0, QApplication::UnicodeUTF8));
+        convertbutton->setText(QApplication::translate("AddVideoDialog", "Add", 0, QApplication::UnicodeUTF8));
         cancelbutton->setText(QApplication::translate("AddVideoDialog", "Cancel", 0, QApplication::UnicodeUTF8));
         Q_UNUSED(AddVideoDialog);
     } // retranslateUi

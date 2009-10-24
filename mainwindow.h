@@ -30,7 +30,6 @@ private slots:
     void reload();
     void about();
     void action_video_select();
-    void Add_Video(const QString&);
     void AddTrack();
     void AddFolder();
     void SetMP();
@@ -39,7 +38,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Itdb_Track* GetTrack(int row,int col);
-
     void createContextMenu();
     void createActions();
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Fri Oct 23 10:01:40 2009
+** Created: Sat Oct 24 10:22:28 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   12, // methods
+       8,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,20 +33,19 @@ static const uint qt_meta_data_MainWindow[] = {
       21,   11,   11,   11, 0x08,
       29,   11,   11,   11, 0x08,
       51,   11,   11,   11, 0x08,
-      70,   11,   11,   11, 0x08,
-      81,   11,   11,   11, 0x08,
-      93,   11,   11,   11, 0x08,
-     101,   11,   11,   11, 0x08,
-     118,   11,   11,   11, 0x08,
+      62,   11,   11,   11, 0x08,
+      74,   11,   11,   11, 0x08,
+      82,   11,   11,   11, 0x08,
+      99,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0reload()\0about()\0"
-    "action_video_select()\0Add_Video(QString)\0"
-    "AddTrack()\0AddFolder()\0SetMP()\0"
-    "showProperties()\0DeleteTrack()\0"
+    "action_video_select()\0AddTrack()\0"
+    "AddFolder()\0SetMP()\0showProperties()\0"
+    "DeleteTrack()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -77,15 +76,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: reload(); break;
         case 1: about(); break;
         case 2: action_video_select(); break;
-        case 3: Add_Video((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 4: AddTrack(); break;
-        case 5: AddFolder(); break;
-        case 6: SetMP(); break;
-        case 7: showProperties(); break;
-        case 8: DeleteTrack(); break;
+        case 3: AddTrack(); break;
+        case 4: AddFolder(); break;
+        case 5: SetMP(); break;
+        case 6: showProperties(); break;
+        case 7: DeleteTrack(); break;
         default: ;
         }
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }

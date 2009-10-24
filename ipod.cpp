@@ -55,11 +55,11 @@ int Ipod::usedspaceperc(void)
   return ((float)usedsize/totalsize)*100;
 }
 
-void Ipod::Add_Video(const QString& fp)
+void Ipod::Add_Video(const QString& fp,Itdb_Mediatype type)
 {
     Itdb_Track* video=itdb_track_new();
 
-    video->mediatype=ITDB_MEDIATYPE_MOVIE;  //set media type before calling SetTags
+    video->mediatype=type;  //set media type before calling SetTags
     SetTags(video,fp);
 
     video->itdb=database;
@@ -74,6 +74,10 @@ void Ipod::Add_Video(const QString& fp)
     //changed the DB
     DBchanged=true;
 
+    if(fp.contains("/tmp/"))          //if temporary, delete file
+        DeleteFile(fp);
+
+    emit AddedTrack();
 }
 
 void Ipod::SetMountPoint(const QString& mp)
