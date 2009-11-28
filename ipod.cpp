@@ -1,4 +1,5 @@
 #include "ipod.h"
+#include <iostream>
 
 
 Ipod::Ipod()
@@ -25,17 +26,9 @@ void Ipod::builddb(void)
 
 bool Ipod::mpexists(void)
 {
-    Itdb_iTunesDB* tmp;
-    struct stat st;                   //check if mountpoint exists
-    if(stat(mountpoint.toLatin1(),&st)==0)
-    {
-        if((tmp=itdb_parse(mountpoint.toLatin1(),NULL))!=NULL)
-        {
-            itdb_free(tmp);
-            return 1;
-        }
-    }
-
+    QDir mp(mountpoint);
+    if(mp.exists())
+        return 1;
     return 0;
 }
 
@@ -47,12 +40,12 @@ Ipod::~Ipod()
 
 int Ipod::usedspaceperc(void)
 {
-  struct statvfs fs;
-  statvfs(mountpoint.toLatin1(),&fs);
-  int totalsize=ipodinfo->capacity*1000*1000;
-  int freesize=(fs.f_bavail*fs.f_frsize)/1024;
-  int usedsize=totalsize-freesize;
-  return ((float)usedsize/totalsize)*100;
+  qlonglong totalsize=ipodinfo->capacity*1000*1000;
+  qlonglong usedsize=usedSpace(mountpoint)/1024;
+
+  long perc=usedsize*100/totalsize;
+
+  return perc;
 }
 
 void Ipod::Add_Video(const QString& fp,Itdb_Mediatype type)

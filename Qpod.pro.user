@@ -63,7 +63,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
     <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-kjc9cHZA0k,guid=f096982bcf2ac12b394b9ee34ae2a005</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-AoqBjOUMFC,guid=774d40adc5982c962e6916334b10394e</value>
     <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -97,7 +97,7 @@
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1501,unix/myhost:/tmp/.ICE-unix/1501</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1515,unix/myhost:/tmp/.ICE-unix/1515</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >USER=abhi</value>
@@ -108,7 +108,7 @@
     <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
     <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1256366082.570446-134024679</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1259354443.527407-567841391</value>
     <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -119,7 +119,7 @@
     <value type="QString" >CONFIG+=debug</value>
    </valuelist>
    <value key="abstractProcess.command" type="QString" >/usr/bin/qmake</value>
-   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.enabled" type="bool" >false</value>
    <value key="abstractProcess.workingDirectory" type="QString" >/home/kdemod/development/Qpod/Qpod</value>
    <value key="buildConfiguration" type="int" >2</value>
   </valuemap>
@@ -130,7 +130,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
     <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-kjc9cHZA0k,guid=f096982bcf2ac12b394b9ee34ae2a005</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-AoqBjOUMFC,guid=774d40adc5982c962e6916334b10394e</value>
     <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -164,7 +164,7 @@
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1501,unix/myhost:/tmp/.ICE-unix/1501</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1515,unix/myhost:/tmp/.ICE-unix/1515</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >USER=abhi</value>
@@ -175,7 +175,7 @@
     <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
     <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1256366082.570446-134024679</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1259354443.527407-567841391</value>
     <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >

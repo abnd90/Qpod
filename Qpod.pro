@@ -2,6 +2,7 @@
 # Project created by QtCreator 2009-09-26T22:56:33
 # -------------------------------------------------
 TARGET = Qpod
+QT += network
 TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \

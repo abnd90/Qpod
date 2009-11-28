@@ -8,9 +8,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gpod/itdb.h>
 #include "mainwindow.h"
-#include <sys/stat.h>
-#include <cstdlib>
-#include <sys/statvfs.h>
 #include "common.h"
 
 

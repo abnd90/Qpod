@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 
 Ipod ipod;
 
@@ -31,7 +32,7 @@ MainWindow::~MainWindow()
 void MainWindow::reload()   //SLOT
 {
     ipod.builddb();
-    initwin();
+    initTable();
 }
 
 void MainWindow::about()   //SLOT about Qpod
@@ -43,7 +44,7 @@ void MainWindow::about()   //SLOT about Qpod
                        "<p>Still an early alpha, so it may eat your iPod");
 }
 
-void MainWindow::initwin()
+void MainWindow::initTable()
 {
     if(!ipod.mpexists())
     {
@@ -67,7 +68,7 @@ void MainWindow::initwin()
 
     ui->menu_Music->setEnabled(1);
     /*populate the table with tracks*/
-    if(/*view==LIST*/1)                   //multiple views unimplemented
+    if(1)
     {
         //ui->stackedWidget->setCurrentIndex(0);
         ui->tableWidget->clearContents();
@@ -101,41 +102,18 @@ void MainWindow::initwin()
             }
 
        }
-
-    /*if(view==ALBUM)
-    {
-
-        QSplitter splitter(Qt::Horizontal);
-
-        QTableWidget *left=new QTableWidget;
-        QTableWidget *right=new QTableWidget;
-        QLabel *newl=new QLabel("whtf?");
-        left->setRowCount(5);
-        left->setColumnCount(5);
-        left->setItem(0,0, &QTableWidgetItem("WTF?"));
-        splitter.addWidget(left);
-        splitter.addWidget(right);
-        splitter.addWidget(newl);
-
-        ui->stackedWidget->insertWidget(1,&splitter);
-        
-        ui->stackedWidget->setCurrentIndex(1);
-
-    }*/
 }
 
-void MainWindow::action_video_select()   //SLOT
+void MainWindow::actionVideoAdd()
 {
-    QFileDialog *open=new QFileDialog(this,Qt::Dialog);
-    open->setWindowTitle("Select a video file");
-    open->setNameFilter("*.flv *.avi *.wmv *.m4v *.mp4");
-    open->show();
-    VideoDialog *V=new VideoDialog;
-    connect(open, SIGNAL(fileSelected(const QString&) ),V, SLOT(open_video_dialog(const QString&)));
-    connect(V, SIGNAL(Conv_Done(const QString&,Itdb_Mediatype)),&ipod, SLOT(Add_Video(const QString&,Itdb_Mediatype)));
+    QString filename=QFileDialog::getOpenFileName(this,"Select a video file","/","Videos (*.flv *.avi *.wmv *.m4v *.mp4)");
+
+    if(!filename.isNull())
+        new VideoDialog(filename);
+
 }
 
-Itdb_Track* MainWindow::GetTrack(int row,int col)
+Itdb_Track* MainWindow::getTrack(int row,int col=0)
 {
     QTableWidgetItem* titleitem=ui->tableWidget->item(row,0);
     QTableWidgetItem* artistitem=ui->tableWidget->item(row,1);
@@ -174,7 +152,7 @@ Itdb_Track* MainWindow::GetTrack(int row,int col)
 
 }
 
-void MainWindow::SetMP(void)
+void MainWindow::setMP(void)
 {
     QFileDialog *open=new QFileDialog(this,Qt::Dialog);
     open->setWindowTitle("Select a path");
@@ -186,7 +164,7 @@ void MainWindow::SetMP(void)
 
 }
 
-void MainWindow::AddTrack()
+void MainWindow::addFile()
 {
     QFileDialog *open=new QFileDialog(this,Qt::Dialog);
     open->setWindowTitle("Select an Audio file");
@@ -196,7 +174,7 @@ void MainWindow::AddTrack()
 
 }
 
-void MainWindow::AddFolder()
+void MainWindow::addFolder()
 {
     QFileDialog *open=new QFileDialog(this,Qt::Dialog);
     open->setWindowTitle("Select a folder");
@@ -220,21 +198,21 @@ void MainWindow::createActions()
     connect(ui->actionAbout_Qt,SIGNAL(triggered()), qApp,SLOT(aboutQt()));
     connect(ui->actionReload,SIGNAL(triggered()), this,SLOT(reload()));
     connect(ui->actionAbout,SIGNAL(triggered()), this,SLOT(about()));
-    connect(ui->actionConvert_and_Add,SIGNAL(triggered()), this,SLOT(action_video_select()));
-    connect(ui->actionSet_Mount_Point,SIGNAL(triggered()),this,SLOT(SetMP()));
-    connect(ui->actionAdd_File,SIGNAL(triggered()),this,SLOT(AddTrack()));
-    connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(AddFolder()));
+    connect(ui->actionConvert_and_Add,SIGNAL(triggered()), this,SLOT(actionVideoAdd()));
+    connect(ui->actionSet_Mount_Point,SIGNAL(triggered()),this,SLOT(setMP()));
+    connect(ui->actionAdd_File,SIGNAL(triggered()),this,SLOT(addFile()));
+    connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(addFolder()));
     connect(ui->actionAdd_YouTube_Video,SIGNAL(triggered()),this,SLOT(addYoutube()));
 
     actionProperties=new QAction("Properties",ui->tableWidget);
     connect(actionProperties,SIGNAL(triggered()),this,SLOT(showProperties()));
     actionDelete=new QAction("Delete",ui->tableWidget);
-    connect(actionDelete,SIGNAL(triggered()),this,SLOT(DeleteTrack()));
+    connect(actionDelete,SIGNAL(triggered()),this,SLOT(deleteTrack()));
 }
 
 void MainWindow::showProperties()
 {
-    Itdb_Track * thetrack=GetTrack(ui->tableWidget->currentRow(),ui->tableWidget->currentColumn());
+    Itdb_Track * thetrack=getTrack(ui->tableWidget->currentRow(),ui->tableWidget->currentColumn());
 
     if(thetrack==NULL)
         return;
@@ -256,18 +234,28 @@ void MainWindow::showProperties()
     trackproperties.show();
 }
 
-void MainWindow::DeleteTrack()
+void MainWindow::deleteTrack()
 {
-    int row=ui->tableWidget->currentRow();
-    int column=ui->tableWidget->currentColumn();
-    Itdb_Track * thetrack=GetTrack(row,column);
+    QList<QTableWidgetItem *> selected = ui->tableWidget->selectedItems();
+    QList<QTableWidgetItem *>::iterator item=selected.begin();
+    while(item != selected.end())
+    {
+
+    Itdb_Track* thetrack=getTrack((*item)->row());
 
     if(thetrack==NULL)
-        return;
-
+        continue;
+    std::cout<<thetrack->title;
     if(ipod.removeTrack(thetrack))
-        ui->tableWidget->removeRow(row);
-    this->statusBar()->showMessage("Track deleted",5000);
+       ui->tableWidget->removeRow((*item)->row());
+
+    if(item != (selected.end()-1))
+        item += ui->tableWidget->columnCount();
+    else
+        ++item;
+     }
+
+    this->statusBar()->showMessage("Track(s) deleted",5000);
 }
 
 void MainWindow::addYoutube()

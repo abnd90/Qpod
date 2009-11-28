@@ -7,6 +7,7 @@
 
 std::string getYoutubeVideo(std::string& yUrl);
 
+
 class YoutubeDialog : public QDialog, public Ui::YoutubeDialog
 {
     Q_OBJECT

@@ -24,22 +24,22 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void initwin(void);
+    void initTable(void);
 
 private slots:
     void reload();
     void about();
-    void action_video_select();
-    void AddTrack();
-    void AddFolder();
-    void SetMP();
+    void actionVideoAdd();
+    void addFile();
+    void addFolder();
+    void setMP();
     void showProperties();
-    void DeleteTrack();
+    void deleteTrack();
     void addYoutube();
 
 private:
     Ui::MainWindow *ui;
-    Itdb_Track* GetTrack(int row,int col);
+    Itdb_Track* getTrack(int row,int col);
     void createContextMenu();
     void createActions();
     QString tmp;
