@@ -12,6 +12,9 @@
 #include <tag.h>
 #include <fileref.h>
 #include <mp4v2/mp4v2.h>
+#include <mpegfile.h>
+#include <attachedpictureframe.h>
+#include <id3v2tag.h>
 
 void SetTags(Itdb_Track* track,QString fp);
 bool DeleteFile(const QString & name);

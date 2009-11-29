@@ -14,7 +14,19 @@ void SetTags(Itdb_Track* track,const QString fp)
     TagLib::String title;
     if( track->mediatype != ITDB_MEDIATYPE_MOVIE && track->mediatype != ITDB_MEDIATYPE_MUSICVIDEO && track->mediatype != ITDB_MEDIATYPE_TVSHOW )
     {
-            TagLib::FileRef f(fp.toLatin1());                //Audio file
+            TagLib::FileRef f(fp.toLatin1());    //Audio file
+            
+            if(fp.contains(".mp3"))
+            {
+                TagLib::MPEG::File::File mp3file(fp.toLatin1());
+                TagLib::ID3v2::FrameList l = mp3file.ID3v2Tag()->frameListMap()[ "APIC" ];
+                if(!l.isEmpty())
+                {
+                    TagLib::ID3v2::AttachedPictureFrame* pf = (TagLib::ID3v2::AttachedPictureFrame*)l.front();
+                    itdb_track_set_thumbnails_from_data(track,(guchar*)pf->picture().data(),pf->picture().size());
+                }
+
+            }
 
             if(!f.isNull())
             {

@@ -1,6 +1,5 @@
 #include "videodialog.h"
 #include "ipod.h"
-#include <iostream>
 
 extern Ipod ipod;
 

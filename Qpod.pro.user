@@ -63,7 +63,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
     <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-AoqBjOUMFC,guid=774d40adc5982c962e6916334b10394e</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-PBjatexo5Y,guid=b307a37d46e8a0cd798c39ce4b1295bf</value>
     <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -82,7 +82,6 @@
     <value type="QString" >KDE_SESSION_UID=1001</value>
     <value type="QString" >KDE_SESSION_VERSION=4</value>
     <value type="QString" >LANG=en_US.utf8</value>
-    <value type="QString" >LANGUAGE=</value>
     <value type="QString" >LC_COLLATE=C</value>
     <value type="QString" >LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString" >LESS=-R</value>
@@ -97,7 +96,7 @@
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1515,unix/myhost:/tmp/.ICE-unix/1515</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1483,unix/myhost:/tmp/.ICE-unix/1483</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >USER=abhi</value>
@@ -108,7 +107,7 @@
     <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
     <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1259354443.527407-567841391</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1259509181.303565-1137328379</value>
     <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -130,7 +129,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
     <value type="QString" >ALSA_PLUGINS_DIR=/usr/lib/alsa-lib</value>
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-AoqBjOUMFC,guid=774d40adc5982c962e6916334b10394e</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-PBjatexo5Y,guid=b307a37d46e8a0cd798c39ce4b1295bf</value>
     <value type="QString" >DESKTOP_SESSION=kde</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -149,7 +148,6 @@
     <value type="QString" >KDE_SESSION_UID=1001</value>
     <value type="QString" >KDE_SESSION_VERSION=4</value>
     <value type="QString" >LANG=en_US.utf8</value>
-    <value type="QString" >LANGUAGE=</value>
     <value type="QString" >LC_COLLATE=C</value>
     <value type="QString" >LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
     <value type="QString" >LESS=-R</value>
@@ -164,7 +162,7 @@
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_PLUGIN_PATH=/home/kdemod/.kdemod4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString" >QT_XFT=true</value>
-    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1515,unix/myhost:/tmp/.ICE-unix/1515</value>
+    <value type="QString" >SESSION_MANAGER=local/myhost:@/tmp/.ICE-unix/1483,unix/myhost:/tmp/.ICE-unix/1483</value>
     <value type="QString" >SHELL=/bin/bash</value>
     <value type="QString" >SHLVL=1</value>
     <value type="QString" >USER=abhi</value>
@@ -175,7 +173,7 @@
     <value type="QString" >XDG_CONFIG_HOME=/home/kdemod/.config</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
     <value type="QString" >XDG_DATA_HOME=/home/kdemod/.local/share</value>
-    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1259354443.527407-567841391</value>
+    <value type="QString" >XDG_SESSION_COOKIE=0a02586379904a2dbfad070047f4f249-1259509181.303565-1137328379</value>
     <value type="QString" >XDM_MANAGED=method=classic,auto</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >

@@ -9,4 +9,8 @@
         <file>images/folder.png</file>
         <file>images/no-cover-art.jpg</file>
     </qresource>
+    <qresource prefix="/icons" >
+        <file>images/application_exit.png</file>
+        <file>images/reload.png</file>
+    </qresource>
 </RCC>

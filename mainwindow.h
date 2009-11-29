@@ -36,16 +36,24 @@ private slots:
     void showProperties();
     void deleteTrack();
     void addYoutube();
+    void searchTracks(QString);
 
 private:
     Ui::MainWindow *ui;
     Itdb_Track* getTrack(int row,int col);
     void createContextMenu();
     void createActions();
+    void createToolbars();
     QString tmp;
-
+    QTableWidget* searchItems;
+    //QList<QTableWidget*> tableBackup;
     QAction *actionProperties;
     QAction *actionDelete;
+    QToolBar *fileToolbar;
+    QToolBar *musicToolbar;
+    QToolBar *videoToolbar;
+    QToolBar *searchToolbar;
+    QLineEdit *searchBox;
     PropertiesDialog trackproperties;
 
 

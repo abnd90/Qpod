@@ -1,13 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <iostream>
 
 Ipod ipod;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    //view=LIST;               //multiple views unimplemented
     ui->setupUi(this);
     setWindowTitle(tr("Qpod"));
     setWindowIcon(QIcon(":/images/ipod_icon.png"));
@@ -16,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ipod.DBchanged=false;        //initialising
     createActions();
     createContextMenu();
+    createToolbars();
 
     reload();
 
@@ -68,15 +67,13 @@ void MainWindow::initTable()
 
     ui->menu_Music->setEnabled(1);
     /*populate the table with tracks*/
-    if(1)
-    {
-        //ui->stackedWidget->setCurrentIndex(0);
+
         ui->tableWidget->clearContents();
            Itdb_Track *tmp;
            GList *tmptracklst=ipod.tracks;
            int row=0,column=0;
            int rowcount=0;
-           //ui->tableWidget->setRowCount(g_list_length(tmptracklst));
+
 
            while(tmptracklst!=NULL)
            {
@@ -99,7 +96,7 @@ void MainWindow::initTable()
                  column=0;
                  tmptracklst=tmptracklst->next;
 
-            }
+
 
        }
 }
@@ -245,7 +242,7 @@ void MainWindow::deleteTrack()
 
     if(thetrack==NULL)
         continue;
-    std::cout<<thetrack->title;
+
     if(ipod.removeTrack(thetrack))
        ui->tableWidget->removeRow((*item)->row());
 
@@ -262,6 +259,52 @@ void MainWindow::addYoutube()
 {
     YoutubeDialog *D=new YoutubeDialog;
     D->show();
+}
+
+void MainWindow::createToolbars()
+{
+    musicToolbar= addToolBar(tr("&Music"));
+    videoToolbar= addToolBar(tr("&Video"));
+    fileToolbar= addToolBar(tr("&File"));
+    fileToolbar->addAction(ui->actionReload);
+    fileToolbar->addAction(ui->action_Quit);
+    searchBox= new QLineEdit;
+    QLabel *searchLabel=new QLabel("Search: ");
+    searchToolbar= addToolBar(tr("&Search"));
+    searchBox->setSizePolicy(QSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred));
+    searchToolbar->addWidget(searchLabel);
+    searchToolbar->addWidget(searchBox);
+
+    connect(searchBox,SIGNAL(textChanged(QString)),this,SLOT(searchTracks(QString)));
+}
+
+void MainWindow::searchTracks(QString key)
+{
+
+    if(!key.isEmpty())
+    {
+        QList<QTableWidgetItem *>searchlist = ui->tableWidget->findItems(key,Qt::MatchContains);
+        QMap<int,int> rows;
+
+        foreach(QTableWidgetItem *item,searchlist)          //get unique rows
+           ++rows[item->row()];
+
+
+       /* ui->tableWidget->setColumnCount(tableBackup->columnCount());
+        QMap<int,int>::iterator it=rows.begin();
+        for (int r=0,c=0;it != rows.end();it++,c=0,++r)
+        {
+            ui->tableWidget->setRowCount(r+1);
+            while(c<tableBackup->columnCount())
+            {
+                QTableWidgetItem *tmpwidget=new QTableWidgetItem(*(tableBackup->item(it.key(),c)));
+                ui->tableWidget->setItem(r,c,tmpwidget);
+                c++;
+            }
+        }*/
+
+     }
+
 }
 
 
