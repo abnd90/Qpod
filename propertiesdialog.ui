@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>409</width>
-    <height>178</height>
+    <width>448</width>
+    <height>194</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,12 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" rowspan="5">
     <widget class="QLabel" name="AlbumArt">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
        <width>128</width>
@@ -31,7 +37,7 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </item>
-   <item row="5" column="2">
+   <item row="7" column="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -70,6 +76,32 @@ p, li { white-space: pre-wrap; }
    </item>
    <item row="3" column="2">
     <widget class="QLineEdit" name="AlbumBox"/>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="localsetButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>32</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Set Album cover form a local file</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>:/images/folder.png</normaloff>:/images/folder.png</iconset>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

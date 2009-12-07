@@ -16,10 +16,9 @@ public:
 
 private:
     QString filepath;
-    Itdb_Mediatype type;
-    void setfname(void);
     QProcess process;
     void convertToMp4(QString filepath);
+    Itdb_Track* track;
 
 public slots:
     void open_video_dialog(const QString& fpath); //to be removed
@@ -30,8 +29,9 @@ private slots:
     void processError(QProcess::ProcessError);
     void processFinished(int, QProcess::ExitStatus);
     void displayError();
+    void enableMore(QString);
 
 signals:
-    void conversionDone(const QString&,Itdb_Mediatype);
+    void conversionDone(const QString&,Itdb_Track*);
 };
 #endif // VIDEODIALOG_H

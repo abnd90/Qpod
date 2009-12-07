@@ -12,5 +12,6 @@
     <qresource prefix="/icons" >
         <file>images/application_exit.png</file>
         <file>images/reload.png</file>
+        <file>images/clear_left.png</file>
     </qresource>
 </RCC>

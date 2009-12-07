@@ -57,7 +57,6 @@ void SetTags(Itdb_Track* track,const QString fp)
     else               //Movie file
     {
         MP4FileHandle file = MP4Modify(fp.toLatin1() , MP4_DETAILS_ERROR, 0 );       //libmp4v2
-        title=filename.toStdString();
         if( file != MP4_INVALID_FILE_HANDLE )
         {
             u_int32_t numTracks = MP4GetNumberOfTracks(file);       //adapted from amarok
@@ -81,8 +80,10 @@ void SetTags(Itdb_Track* track,const QString fp)
              MP4Close( file );
         }
         track->movie_flag = 0x01;
-        track->remember_playback_position=0x01;
-        track->title= g_strdup(title.to8Bit(true).c_str());
+        if(track->mediatype == ITDB_MEDIATYPE_MOVIE)
+            track->remember_playback_position=0x01;
+        if(track->mediatype != ITDB_MEDIATYPE_MUSICVIDEO)
+            track->title= g_strdup(filename.toLatin1());
     }
     tfile.close();
 }

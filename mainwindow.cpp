@@ -4,14 +4,14 @@
 Ipod ipod;
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow)
+        : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Qpod"));
     setWindowIcon(QIcon(":/images/ipod_icon.png"));
 
-    connect(&ipod,SIGNAL(AddedTrack()), this,SLOT(reload()));
-    ipod.DBchanged=false;        //initialising
+    connect(&ipod,SIGNAL(AddedTrack()), this,SLOT(initTable()));
+    propertyDialog=new PropertiesDialog();
     createActions();
     createContextMenu();
     createToolbars();
@@ -48,57 +48,40 @@ void MainWindow::initTable()
     if(!ipod.mpexists())
     {
         ui->label->setText("No iPod Mounted");
-        ui->tableWidget->clearContents();
-        ui->tableWidget->setEnabled(0);
+        ui->treeWidget->clear();
+        ui->treeWidget->setEnabled(0);
         ui->ipodimg->setPixmap(QPixmap(":/images/ipod_unmount.png"));
         ui->progressBar->setValue(0);
         ui->menuMovies->setEnabled(0);
         ui->menu_Music->setEnabled(0);
+        searchBox->setEnabled(0);
         return;
     }
 
-    ui->tableWidget->setEnabled(1);
+    ui->treeWidget->setEnabled(1);
     ui->progressBar->setValue(ipod.usedspaceperc());
     ui->label->setText("iPod Mounted");
     ui->ipodimg->setPixmap(QPixmap(":/images/ipod_mount.png"));
 
     if(ipod.SupportsVideo())
-         ui->menuMovies->setEnabled(1);
+        ui->menuMovies->setEnabled(1);
 
     ui->menu_Music->setEnabled(1);
+    searchBox->setEnabled(1);
     /*populate the table with tracks*/
 
-        ui->tableWidget->clearContents();
-           Itdb_Track *tmp;
-           GList *tmptracklst=ipod.tracks;
-           int row=0,column=0;
-           int rowcount=0;
+    ui->treeWidget->clear();
+    Itdb_Track *tmp;
+    GList *tmptracklst=ipod.tracks;
 
-
-           while(tmptracklst!=NULL)
-           {
-                 tmp=(Itdb_Track*)tmptracklst->data;
-
-                 if(QString(tmp->title).isEmpty())       //stale entries
-                 {
-                     tmptracklst=tmptracklst->next;
-                     continue;
-                 }
-                 ++rowcount;
-                 ui->tableWidget->setRowCount(rowcount);
-                 QTableWidgetItem *title = new QTableWidgetItem(tmp->title);
-                 QTableWidgetItem *artist = new QTableWidgetItem(tmp->artist);
-                 QTableWidgetItem *album = new QTableWidgetItem(tmp->album);
-
-                 ui->tableWidget->setItem(row, column, title);
-                 ui->tableWidget->setItem(row, ++column, artist);
-                 ui->tableWidget->setItem(row++, ++column, album);
-                 column=0;
-                 tmptracklst=tmptracklst->next;
-
-
-
-       }
+    while(tmptracklst!=NULL)
+    {
+        tmp=(Itdb_Track*)tmptracklst->data;
+        QTreeWidgetItem* tmpItem = new QTreeWidgetItem(QStringList() << tmp->title << tmp->artist << tmp->album);
+        ui->treeWidget->addTopLevelItem(tmpItem);
+        tmptracklst=tmptracklst->next;
+    }
+    //           ui->treeWidget->header()->setResizeMode(QHeaderView::ResizeToContents);
 }
 
 void MainWindow::actionVideoAdd()
@@ -110,34 +93,31 @@ void MainWindow::actionVideoAdd()
 
 }
 
-Itdb_Track* MainWindow::getTrack(int row,int col=0)
+Itdb_Track* MainWindow::getTrack(QTreeWidgetItem* item)
 {
-    QTableWidgetItem* titleitem=ui->tableWidget->item(row,0);
-    QTableWidgetItem* artistitem=ui->tableWidget->item(row,1);
-    QTableWidgetItem* albumitem=ui->tableWidget->item(row,2);
+    QString titleitem=item->data(0,0).toString();
+    QString artistitem=item->data(1,0).toString();
+    QString albumitem=item->data(2,0).toString();
     GList *tmptracklst=ipod.tracks;
 
-    if(titleitem==NULL)
-        return NULL;
-
-    while(1)
+    while(tmptracklst!=NULL)
     {
-        if(titleitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->title))
+        if(titleitem!=QString(((Itdb_Track *)tmptracklst->data)->title))
         {
-             tmptracklst=tmptracklst->next;
-             continue;
-         }
+            tmptracklst=tmptracklst->next;
+            continue;
+        }
         //track titles are equal, make sure album and artist are also equal
-        if(artistitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->artist))
-         {
-             tmptracklst=tmptracklst->next;
-             continue;
-         }
-        if(albumitem->text()!=QString(((Itdb_Track *)tmptracklst->data)->album))
-         {
-             tmptracklst=tmptracklst->next;
-             continue;
-         }
+        if(artistitem!=QString(((Itdb_Track *)tmptracklst->data)->artist))
+        {
+            tmptracklst=tmptracklst->next;
+            continue;
+        }
+        if(albumitem!=QString(((Itdb_Track *)tmptracklst->data)->album))
+        {
+            tmptracklst=tmptracklst->next;
+            continue;
+        }
         break;
     }
 
@@ -184,9 +164,9 @@ void MainWindow::addFolder()
 
 void MainWindow::createContextMenu()
 {
-    ui->tableWidget->addAction(actionProperties);
-    ui->tableWidget->addAction(actionDelete);
-    ui->tableWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+    ui->treeWidget->addAction(actionProperties);
+    ui->treeWidget->addAction(actionDelete);
+    ui->treeWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 
@@ -201,57 +181,39 @@ void MainWindow::createActions()
     connect(ui->actionAdd_Folder,SIGNAL(triggered()),this,SLOT(addFolder()));
     connect(ui->actionAdd_YouTube_Video,SIGNAL(triggered()),this,SLOT(addYoutube()));
 
-    actionProperties=new QAction("Properties",ui->tableWidget);
+    actionProperties=new QAction("Properties",ui->treeWidget);
     connect(actionProperties,SIGNAL(triggered()),this,SLOT(showProperties()));
-    actionDelete=new QAction("Delete",ui->tableWidget);
+    actionDelete=new QAction("Delete",ui->treeWidget);
     connect(actionDelete,SIGNAL(triggered()),this,SLOT(deleteTrack()));
+    connect(propertyDialog,SIGNAL(modified()),this,SLOT(initTable()));
+
 }
 
 void MainWindow::showProperties()
 {
-    Itdb_Track * thetrack=getTrack(ui->tableWidget->currentRow(),ui->tableWidget->currentColumn());
-
+    Itdb_Track * thetrack=getTrack(ui->treeWidget->currentItem());
     if(thetrack==NULL)
         return;
-    if(itdb_track_has_thumbnails(thetrack))
-    {
-        GdkPixbuf* cover=(GdkPixbuf*)itdb_track_get_thumbnail(thetrack,128,128);
-        gdk_pixbuf_save (cover, "tmpcover", "jpeg", NULL,
-                 "quality", "100", NULL);
-
-        trackproperties.AlbumArt->setPixmap(QPixmap("tmpcover"));
-    }
-    else
-        trackproperties.AlbumArt->setPixmap(QPixmap(":/images/no-cover-art.jpg"));
-
-    trackproperties.AlbumBox->setText(QString(thetrack->album));
-    trackproperties.ArtistBox->setText(QString(thetrack->artist));
-    trackproperties.TitleBox->setText(QString(thetrack->title));
-
-    trackproperties.show();
+    propertyDialog->display(thetrack);
 }
 
 void MainWindow::deleteTrack()
 {
-    QList<QTableWidgetItem *> selected = ui->tableWidget->selectedItems();
-    QList<QTableWidgetItem *>::iterator item=selected.begin();
+    QList<QTreeWidgetItem *> selected = ui->treeWidget->selectedItems();
+    QList<QTreeWidgetItem *>::iterator item=selected.begin();
+
     while(item != selected.end())
     {
 
-    Itdb_Track* thetrack=getTrack((*item)->row());
+        Itdb_Track* thetrack=getTrack(*item);
 
-    if(thetrack==NULL)
-        continue;
+        if(thetrack==NULL)
+            continue;
 
-    if(ipod.removeTrack(thetrack))
-       ui->tableWidget->removeRow((*item)->row());
-
-    if(item != (selected.end()-1))
-        item += ui->tableWidget->columnCount();
-    else
+        ipod.removeTrack(thetrack);
         ++item;
-     }
-
+    }
+    initTable();
     this->statusBar()->showMessage("Track(s) deleted",5000);
 }
 
@@ -275,38 +237,41 @@ void MainWindow::createToolbars()
     searchToolbar->addWidget(searchLabel);
     searchToolbar->addWidget(searchBox);
 
-    connect(searchBox,SIGNAL(textChanged(QString)),this,SLOT(searchTracks(QString)));
+    connect(searchBox,SIGNAL(returnPressed()),this,SLOT(searchTracks()));
+    connect(searchBox,SIGNAL(textChanged(QString)),this,SLOT(searchDone(QString)));
+
 }
 
-void MainWindow::searchTracks(QString key)
+void MainWindow::searchTracks()       //inefficient, takes too long - TODO
 {
-
+    QString key=searchBox->text();
     if(!key.isEmpty())
     {
-        QList<QTableWidgetItem *>searchlist = ui->tableWidget->findItems(key,Qt::MatchContains);
-        QMap<int,int> rows;
+        initTable();
+        QList<QTreeWidgetItem *>searchlist = ui->treeWidget->findItems(key,Qt::MatchContains,0);
+        searchlist += ui->treeWidget->findItems(key,Qt::MatchContains,1);
+        searchlist += ui->treeWidget->findItems(key,Qt::MatchContains,2);
+        QSet<QTreeWidgetItem *>uniqlist=searchlist.toSet(); //remove duplicates
 
-        foreach(QTableWidgetItem *item,searchlist)          //get unique rows
-           ++rows[item->row()];
-
-
-       /* ui->tableWidget->setColumnCount(tableBackup->columnCount());
-        QMap<int,int>::iterator it=rows.begin();
-        for (int r=0,c=0;it != rows.end();it++,c=0,++r)
+        QList<QTreeWidgetItem *> copy;
+        QSet<QTreeWidgetItem *>::iterator it=uniqlist.begin();
+        while(it!=uniqlist.end())
         {
-            ui->tableWidget->setRowCount(r+1);
-            while(c<tableBackup->columnCount())
-            {
-                QTableWidgetItem *tmpwidget=new QTableWidgetItem(*(tableBackup->item(it.key(),c)));
-                ui->tableWidget->setItem(r,c,tmpwidget);
-                c++;
-            }
-        }*/
+            QTreeWidgetItem* tmp=new QTreeWidgetItem(**it);
+            copy.push_back(tmp);
+            it++;
+        }
 
-     }
+        ui->treeWidget->clear();
+        ui->treeWidget->addTopLevelItems(copy);
+
+    }
 
 }
 
-
-
+void MainWindow::searchDone(QString ser)
+{
+    if(ser.isEmpty())
+        initTable();
+}
 

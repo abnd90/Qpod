@@ -24,7 +24,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void initTable(void);
+
+public slots:
+    void initTable();
 
 private slots:
     void reload();
@@ -36,17 +38,16 @@ private slots:
     void showProperties();
     void deleteTrack();
     void addYoutube();
-    void searchTracks(QString);
+    void searchTracks();
+    void searchDone(QString);
 
 private:
     Ui::MainWindow *ui;
-    Itdb_Track* getTrack(int row,int col);
+    Itdb_Track* getTrack(QTreeWidgetItem *);
     void createContextMenu();
     void createActions();
     void createToolbars();
     QString tmp;
-    QTableWidget* searchItems;
-    //QList<QTableWidget*> tableBackup;
     QAction *actionProperties;
     QAction *actionDelete;
     QToolBar *fileToolbar;
@@ -54,9 +55,7 @@ private:
     QToolBar *videoToolbar;
     QToolBar *searchToolbar;
     QLineEdit *searchBox;
-    PropertiesDialog trackproperties;
-
-
+    PropertiesDialog* propertyDialog;
 };
 
 
