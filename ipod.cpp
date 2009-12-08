@@ -1,9 +1,10 @@
 #include "ipod.h"
+extern TransferQueue* queue;
 
 Ipod::Ipod()
 {
     mountpoint="/media/ABHINANDH'S";
-    DBchanged=false;
+    DBchanged=false;    
 }
 
 void Ipod::builddb(void)
@@ -53,20 +54,24 @@ void Ipod::addVideo(const QString& fp,Itdb_Track* video)
 
     video->itdb=database;
     video->filetype =g_strdup( "m4v video" );
-    //write to DB and copy to ipod
-    itdb_cp_track_to_ipod(video,g_strdup(fp.toLatin1()),NULL);
-    itdb_track_add(database,video,-1);
 
-    //add to master playlist
-    Itdb_Playlist *mpl = itdb_playlist_mpl(database);
-    itdb_playlist_add_track(mpl,video, -1);
-    //changed the DB
-    DBchanged=true;
+    video->userdata=new QString(fp);          //save the filepath on local disk
+    queue->append(video);
 
-    if(fp.contains("/tmp/"))          //if temporary, delete file
-        DeleteFile(fp);
-
-    emit AddedTrack();
+//    //write to DB and copy to ipod
+//    itdb_cp_track_to_ipod(video,g_strdup(fp.toLatin1()),NULL);
+//    itdb_track_add(database,video,-1);
+//
+//    //add to master playlist
+//    Itdb_Playlist *mpl = itdb_playlist_mpl(database);
+//    itdb_playlist_add_track(mpl,video, -1);
+//    //changed the DB
+//    DBchanged=true;
+//
+//    if(fp.contains("/tmp/"))          //if temporary, delete file
+//        DeleteFile(fp);
+//
+//    emit AddedTrack();
 }
 
 void Ipod::SetMountPoint(const QString& mp)
@@ -87,30 +92,14 @@ void Ipod::AddTrack(const QString& fp)
 
     track->itdb=database;
 
-    //write to DB and copy to ipod
-    itdb_cp_track_to_ipod(track,g_strdup(fp.toLatin1()),NULL);
-    itdb_track_add(database,track,-1);
-
-    //add to master playlist
-    Itdb_Playlist *mpl = itdb_playlist_mpl(database);
-    itdb_playlist_add_track(mpl, track, -1);
-    //changed the DB
-    DBchanged=true;
-    emit AddedTrack();
+    track->userdata=new QString(fp);          //save the filepath on local disk
+    queue->append(track);
 }
 
 void Ipod::AddTrack(Itdb_Track* track,const QString& fp)
 {
-
-    //write to DB and copy to ipod
-    itdb_cp_track_to_ipod(track,g_strdup(fp.toLatin1()),NULL);
-    itdb_track_add(database,track,-1);
-
-    //add to master playlist
-    Itdb_Playlist *mpl = itdb_playlist_mpl(database);
-    itdb_playlist_add_track(mpl, track, -1);
-    //changed the DB
-    DBchanged=true;
+    track->userdata=new QString(fp);          //save the filepath on local disk
+    queue->append(track);
 }
 
 void Ipod::AddFolder(const QString& fp)

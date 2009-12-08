@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-Ipod ipod;
 
+
+Ipod ipod;
+TransferQueue* queue;
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -12,12 +14,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&ipod,SIGNAL(AddedTrack()), this,SLOT(initTable()));
     propertyDialog=new PropertiesDialog();
+
+    queue=new TransferQueue;
+    ui->frame->layout()->addWidget(queue);
+    queue->hide();
+    ui->menu_Queue->setEnabled(0);
+
     createActions();
     createContextMenu();
     createToolbars();
-
     reload();
 
+//    yt=new Youtube();
 }
 
 MainWindow::~MainWindow()
@@ -28,13 +36,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::reload()   //SLOT
+void MainWindow::reload()
 {
     ipod.builddb();
     initTable();
 }
 
-void MainWindow::about()   //SLOT about Qpod
+void MainWindow::about()
 {
     QMessageBox::about(this,"About Qpod",
                        "<h2>Qpod 0.1</h2>"
@@ -78,7 +86,19 @@ void MainWindow::initTable()
     {
         tmp=(Itdb_Track*)tmptracklst->data;
         QTreeWidgetItem* tmpItem = new QTreeWidgetItem(QStringList() << tmp->title << tmp->artist << tmp->album);
-        ui->treeWidget->addTopLevelItem(tmpItem);
+        appendTree(tmpItem);
+//        QString new1=tmp->ipod_path;
+//        new1.replace(':','/');
+//        new1="/media/ABHINANDH'S"+new1;
+//        std::cerr<<new1.toStdString();
+//        TagLib::MPEG::File::File mp3file(new1.toLatin1());
+//        TagLib::ID3v2::FrameList l = mp3file.ID3v2Tag()->frameListMap()[ "APIC" ];
+//        if(!l.isEmpty())
+//        {
+//            TagLib::ID3v2::AttachedPictureFrame* pf = (TagLib::ID3v2::AttachedPictureFrame*)l.front();
+//            itdb_track_set_thumbnails_from_data(tmp,(guchar*)pf->picture().data(),pf->picture().size());
+//        }
+//
         tmptracklst=tmptracklst->next;
     }
     //           ui->treeWidget->header()->setResizeMode(QHeaderView::ResizeToContents);
@@ -186,7 +206,12 @@ void MainWindow::createActions()
     actionDelete=new QAction("Delete",ui->treeWidget);
     connect(actionDelete,SIGNAL(triggered()),this,SLOT(deleteTrack()));
     connect(propertyDialog,SIGNAL(modified()),this,SLOT(initTable()));
+    connect(queue,SIGNAL(transferred(QTreeWidgetItem*))
+            ,this,SLOT(appendTree(QTreeWidgetItem*)));
 
+    connect(ui->actionTransfer,SIGNAL(triggered()),queue,SLOT(process()));
+    connect(ui->actionClear,SIGNAL(triggered()),queue,SLOT(makeEmpty()));
+    connect(queue,SIGNAL(empty(bool)),ui->menu_Queue,SLOT(setDisabled(bool)));
 }
 
 void MainWindow::showProperties()
@@ -219,8 +244,8 @@ void MainWindow::deleteTrack()
 
 void MainWindow::addYoutube()
 {
-    YoutubeDialog *D=new YoutubeDialog;
-    D->show();
+    //YoutubeDialog *D=new YoutubeDialog;
+    //D->show();
 }
 
 void MainWindow::createToolbars()
@@ -273,5 +298,10 @@ void MainWindow::searchDone(QString ser)
 {
     if(ser.isEmpty())
         initTable();
+}
+
+void MainWindow::appendTree(QTreeWidgetItem* item)
+{
+    ui->treeWidget->addTopLevelItem(item);
 }
 

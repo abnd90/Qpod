@@ -6,12 +6,13 @@
         <file>images/player_pause.png</file>
         <file>images/player_play.png</file>
         <file>images/player_stop.png</file>
-        <file>images/folder.png</file>
         <file>images/no-cover-art.jpg</file>
     </qresource>
     <qresource prefix="/icons" >
         <file>images/application_exit.png</file>
         <file>images/reload.png</file>
         <file>images/clear_left.png</file>
+        <file>images/remove.png</file>
+        <file>images/folder.png</file>
     </qresource>
 </RCC>

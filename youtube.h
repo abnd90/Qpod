@@ -1,23 +1,31 @@
 #ifndef YOUTUBE_H
 #define YOUTUBE_H
-#include <string>
 #include <QString>
+#include <QDialog>
+#include <QUrl>
+#include <QtNetwork>
 #include "ui_youtube.h"
-#include "videodialog.h"
+//#include <string>
 
-std::string getYoutubeVideo(std::string& yUrl);
-
-
-class YoutubeDialog : public QDialog, public Ui::YoutubeDialog
+//#include "videodialog.h"
+//
+//std::string getYoutubeVideo(std::string& yUrl);
+//
+//
+class Youtube : public QDialog, public Ui::YoutubeDialog
 {
     Q_OBJECT
 
-public:
-    YoutubeDialog(QWidget *parent=0);
-    static std::string yUrl;
+private:
+    QUrl* pageUrl;
+    QUrl downloadUrl;
+    QUrl getDownloadLink(QUrl*);
 private slots:
-    void setUrl(QString);
-    void dloadYtube();
+    void handleNetworkReply(QNetworkReply*);
+
+public:
+    Youtube(QWidget *parent=0);
+    Youtube(QUrl* url,QWidget *parent=0);
 };
 
 

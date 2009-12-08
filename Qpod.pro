@@ -10,14 +10,16 @@ SOURCES += main.cpp \
     videodialog.cpp \
     common.cpp \
     propertiesdialog.cpp \
-    youtube.cpp
+    youtube.cpp \
+    transferQueue.cpp
 HEADERS += mainwindow.h \
     ipod.h \
     ipod.h \
     videodialog.h \
     common.h \
     propertiesdialog.h \
-    youtube.h
+    youtube.h \
+    transferQueue.h
 FORMS += mainwindow.ui \
     addvideodialog.ui \
     propertiesdialog.ui \

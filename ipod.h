@@ -9,6 +9,7 @@
 #include <gpod/itdb.h>
 #include "mainwindow.h"
 #include "common.h"
+#include "transferQueue.h"
 
 
 class Ipod:public QObject

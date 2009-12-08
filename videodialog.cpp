@@ -83,9 +83,6 @@ void VideoDialog::convertClicked()
     }
     else
     {
-        progressBar->show();
-        progressLabel->show();
-        progressLabel->setText("Adding video...");
         emit conversionDone(filepath,track);
         this->close();
     }

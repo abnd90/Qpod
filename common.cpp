@@ -19,11 +19,14 @@ void SetTags(Itdb_Track* track,const QString fp)
             if(fp.contains(".mp3"))
             {
                 TagLib::MPEG::File::File mp3file(fp.toLatin1());
-                TagLib::ID3v2::FrameList l = mp3file.ID3v2Tag()->frameListMap()[ "APIC" ];
-                if(!l.isEmpty())
+                if(mp3file.ID3v2Tag())
                 {
-                    TagLib::ID3v2::AttachedPictureFrame* pf = (TagLib::ID3v2::AttachedPictureFrame*)l.front();
-                    itdb_track_set_thumbnails_from_data(track,(guchar*)pf->picture().data(),pf->picture().size());
+                    TagLib::ID3v2::FrameList l = mp3file.ID3v2Tag()->frameListMap()[ "APIC" ];
+                    if(!l.isEmpty())
+                    {
+                        TagLib::ID3v2::AttachedPictureFrame* pf = (TagLib::ID3v2::AttachedPictureFrame*)l.front();
+                        itdb_track_set_thumbnails_from_data(track,(guchar*)pf->picture().data(),pf->picture().size());
+                    }
                 }
 
             }

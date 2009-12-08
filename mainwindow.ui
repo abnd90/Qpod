@@ -180,55 +180,64 @@
        </spacer>
       </item>
       <item>
-       <widget class="QTreeWidget" name="treeWidget">
-        <property name="tabKeyNavigation">
-         <bool>true</bool>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
         </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::ExtendedSelection</enum>
-        </property>
-        <property name="rootIsDecorated">
-         <bool>false</bool>
-        </property>
-        <property name="itemsExpandable">
-         <bool>false</bool>
-        </property>
-        <property name="sortingEnabled">
-         <bool>true</bool>
-        </property>
-        <property name="animated">
-         <bool>false</bool>
-        </property>
-        <property name="headerHidden">
-         <bool>false</bool>
-        </property>
-        <property name="expandsOnDoubleClick">
-         <bool>false</bool>
-        </property>
-        <attribute name="headerDefaultSectionSize">
-         <number>200</number>
-        </attribute>
-        <attribute name="headerDefaultSectionSize">
-         <number>200</number>
-        </attribute>
-        <column>
-         <property name="text">
-          <string>Title</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Artist</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Album</string>
-         </property>
-        </column>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QTreeWidget" name="treeWidget">
+           <property name="tabKeyNavigation">
+            <bool>true</bool>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::ExtendedSelection</enum>
+           </property>
+           <property name="rootIsDecorated">
+            <bool>false</bool>
+           </property>
+           <property name="itemsExpandable">
+            <bool>false</bool>
+           </property>
+           <property name="sortingEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="animated">
+            <bool>false</bool>
+           </property>
+           <property name="headerHidden">
+            <bool>false</bool>
+           </property>
+           <property name="expandsOnDoubleClick">
+            <bool>false</bool>
+           </property>
+           <attribute name="headerDefaultSectionSize">
+            <number>200</number>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>Title</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Artist</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Album</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -278,10 +287,18 @@
     <addaction name="actionAdd_File"/>
     <addaction name="actionAdd_Folder"/>
    </widget>
+   <widget class="QMenu" name="menu_Queue">
+    <property name="title">
+     <string>&amp;Queue</string>
+    </property>
+    <addaction name="actionTransfer"/>
+    <addaction name="actionClear"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_Music"/>
    <addaction name="menuMovies"/>
+   <addaction name="menu_Queue"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -374,6 +391,16 @@
   <action name="actionAdd_YouTube_Video">
    <property name="text">
     <string>Add YouTube Video</string>
+   </property>
+  </action>
+  <action name="actionTransfer">
+   <property name="text">
+    <string>Transfer</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear</string>
    </property>
   </action>
  </widget>

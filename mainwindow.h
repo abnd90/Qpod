@@ -10,7 +10,15 @@
 #include "videodialog.h"
 #include "propertiesdialog.h"
 #include "youtube.h"
+#include "transferQueue.h"
 
+//#include <audioproperties.h>
+//#include <tag.h>
+//#include <fileref.h>
+//#include <mp4v2/mp4v2.h>
+//#include <mpegfile.h>
+//#include <attachedpictureframe.h>
+//#include <id3v2tag.h>
 
 namespace Ui
 {
@@ -40,6 +48,7 @@ private slots:
     void addYoutube();
     void searchTracks();
     void searchDone(QString);
+    void appendTree(QTreeWidgetItem*);
 
 private:
     Ui::MainWindow *ui;
@@ -56,6 +65,7 @@ private:
     QToolBar *searchToolbar;
     QLineEdit *searchBox;
     PropertiesDialog* propertyDialog;
+//    Youtube *yt;
 };
 
 

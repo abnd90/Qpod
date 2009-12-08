@@ -10,7 +10,7 @@ class PropertiesDialog : public QDialog, public Ui::PropertiesDialog
 {
     Q_OBJECT
 private:
-    bool changed;
+    bool coverChanged;
     Itdb_Track* currentTrack;
 public:
     PropertiesDialog(QWidget *parent=0);
@@ -19,6 +19,7 @@ private slots:
     void propChanged();
     void write();
     void setCover();
+    void removeCover();
 signals:
     void modified();
 };
